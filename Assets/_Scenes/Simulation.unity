@@ -712,7 +712,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640c7768554c84a078dfcc9b62f84f41, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
 --- !u!1 &80589458
 GameObject:
   m_ObjectHideFlags: 0
@@ -8075,7 +8075,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948338c1d0db54f7ebdcd96e060e3b5a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
 --- !u!1001 &720525246
 Prefab:
   m_ObjectHideFlags: 0
@@ -22974,7 +22974,7 @@ GameObject:
   - component: {fileID: 1887574447}
   m_Layer: 0
   m_Name: candy
-  m_TagString: Candy
+  m_TagString: Candy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
