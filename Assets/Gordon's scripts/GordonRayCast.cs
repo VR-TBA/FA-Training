@@ -15,6 +15,13 @@ public class GordonRayCast : MonoBehaviour {
 	public bool bearMoved = false;
 	public bool candyMoved = false;
 
+	public float targetTime = 6.0f;
+
+	void timerEnded()
+				 {
+				    Debug.Log ("timer ended");
+				 }
+
 	public void FixedUpdate(){
 
 		Ray myRay = new Ray (transform.position, transform.forward*maxRayDist);
@@ -74,6 +81,24 @@ public class GordonRayCast : MonoBehaviour {
 					CandyAni1.removeCandy ();
 					candyMoved = false;
 				}
+
+			}
+			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
+				
+				 
+				 targetTime -= Time.deltaTime;
+				 
+				 if (targetTime <= 0.0f)
+				 {
+				    timerEnded();
+				 }else{
+				 	Debug.Log ("timer not ended");
+
+				 }
+				 
+				 
+				 
+				 
 
 			}
 		}
