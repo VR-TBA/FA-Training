@@ -7,10 +7,10 @@ public class GordonRayCast : MonoBehaviour {
 
 	public float maxRayDist = 15;
 
-	public SubjectHead SubjectHead1;
-	public HomeworkAni HomeworkAni1;
-	public BearAni BearAni1;
-	public CandyAni CandyAni1;
+	public SubjectHead SubjectHead;
+	public HomeworkAni HomeworkAni;
+	public BearAni BearAni;
+	public CandyAni CandyAni;
 	public bool hwMoved = false;
 	public bool hwMovedFirst = false;
 	public bool waitedEnough = false;
@@ -51,12 +51,12 @@ public class GordonRayCast : MonoBehaviour {
 			if (myHit.collider.tag == "Homework") {
 				Debug.Log ("hit " + myHit.collider.tag);
 				if (hwMoved == false) {
-					HomeworkAni1.moveHW ();
+					HomeworkAni.moveHW ();
 					hwMoved = true;
 					hwMovedFirst = true;
 				} else {
 
-					HomeworkAni1.removeHW ();
+					HomeworkAni.removeHW ();
 					
 					hwMoved = false;
 				}
@@ -69,25 +69,25 @@ public class GordonRayCast : MonoBehaviour {
 			}
 			if(hwMovedFirst == true && ChangeScene.function == "Escape"){
 
-				SubjectHead1.headRed ();
+				SubjectHead.headRed ();
 			}
 
 			if (myHit.collider.tag == "Bear") {
 				if (bearMoved == false) {
-					BearAni1.moveBear ();
+					BearAni.moveBear ();
 					bearMoved = true;
 				} else {
-					BearAni1.removeBear ();
+					BearAni.removeBear ();
 					bearMoved = false;
 				}
 
 			}
 			if (myHit.collider.tag == "Candy") {
 				if (candyMoved == false) {
-					CandyAni1.moveCandy ();
+					CandyAni.moveCandy ();
 					candyMoved = true;
 				} else {
-					CandyAni1.removeCandy ();
+					CandyAni.removeCandy ();
 					candyMoved = false;
 				}
 
@@ -110,7 +110,7 @@ public class GordonRayCast : MonoBehaviour {
 				if( ((time2-time1) > 9) && (turnedAround == true) ){
 					Debug.Log ("waited 10s: " + (time2-time1));
 					waitedEnough = true;
-					SubjectHead1.fixHead ();
+					SubjectHead.fixHead ();
 
 				}
 				 
