@@ -55,6 +55,7 @@ public class GordonRayCast : MonoBehaviour {
 					hwMoved = true;
 					hwMovedFirst = true;
 				} else {
+
 					HomeworkAni1.removeHW ();
 					
 					hwMoved = false;
