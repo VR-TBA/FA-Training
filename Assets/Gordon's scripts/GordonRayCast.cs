@@ -12,24 +12,15 @@ public class GordonRayCast : MonoBehaviour {
 	public BearAni BearAni1;
 	public CandyAni CandyAni1;
 	public bool hwMoved = false;
-	public bool hwMovedFirst = false;
-	public bool waitedEnough = false;
 	public bool bearMoved = false;
 	public bool candyMoved = false;
-<<<<<<< HEAD
-	public bool turnedAround = true;
-	public bool startTimeSet = false;
 
-	int time1 = 0;
-	int time2 = 0;
+	public float targetTime = 6.0f;
 
-	//public float targetTime = 6.0f;
-
-	 public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-
- 	int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-=======
->>>>>>> parent of 356ebb0... some logic for waiting
+	void timerEnded()
+				 {
+				    Debug.Log ("timer ended");
+				 }
 
 	public void FixedUpdate(){
 
@@ -56,11 +47,11 @@ public class GordonRayCast : MonoBehaviour {
 				if (hwMoved == false) {
 					HomeworkAni1.moveHW ();
 					hwMoved = true;
-					hwMovedFirst = true;
-				} else {
+				} 
 
+				else {
 					HomeworkAni1.removeHW ();
-					
+					SubjectHead1.fixHead ();
 					hwMoved = false;
 				}
 					
@@ -70,11 +61,7 @@ public class GordonRayCast : MonoBehaviour {
 				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
-			if(hwMovedFirst == true){
-<<<<<<< HEAD
-
-=======
->>>>>>> master
+			if(hwMoved == true && ChangeScene.function == "Escape"){
 				SubjectHead1.headRed ();
 			}
 
@@ -98,39 +85,24 @@ public class GordonRayCast : MonoBehaviour {
 				}
 
 			}
-<<<<<<< HEAD
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
-				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-				turnedAround = true;
 				
+				 
+				 targetTime -= Time.deltaTime;
+				 
+				 if (targetTime <= 0.0f)
+				 {
+				    timerEnded();
+				 }else{
+				 	Debug.Log ("timer not ended");
 
-				time2 = cur_time; //set time to current time when entering turn-around;
-				//Debug.Log ("time2 = " + time2);
-
-				if(startTimeSet == false){
-					startTimeSet = true;
-					time1 = time2;
-					Debug.Log ("time1 = " + time1);
-				}
-
-
-				if( ((time2-time1) > 9) && (turnedAround == true) ){
-					Debug.Log ("waited 10s: " + (time2-time1));
-					waitedEnough = true;
-					SubjectHead1.fixHead ();
-
-				}
+				 }
+				 
+				 
 				 
 				 
 
-			}else{
-				turnedAround = false;
-				startTimeSet = false;
 			}
-			
-			
-=======
->>>>>>> parent of 356ebb0... some logic for waiting
 		}
 
 	}
