@@ -23213,7 +23213,7 @@ GameObject:
   - component: {fileID: 1887574447}
   m_Layer: 0
   m_Name: candy
-  m_TagString: Candy2
+  m_TagString: Candy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
