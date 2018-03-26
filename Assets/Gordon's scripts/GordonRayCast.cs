@@ -16,7 +16,7 @@ public class GordonRayCast : MonoBehaviour {
 	public bool waitedEnough = false;
 	public bool bearMoved = false;
 	public bool candyMoved = false;
-	public bool turnedAround = true;
+	public bool turnedAround = false;
 	public bool startTimeSet = false;
 
 	int time1 = 0;
@@ -53,7 +53,6 @@ public class GordonRayCast : MonoBehaviour {
 				if (hwMoved == false) {
 					HomeworkAni.moveHW ();
 					hwMoved = true;
-					hwMovedFirst = true;
 				} else {
 
 					HomeworkAni.removeHW ();
@@ -67,9 +66,10 @@ public class GordonRayCast : MonoBehaviour {
 				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
-			if(hwMovedFirst == true && ChangeScene.function == "Escape"){
+			if( (hwMovedFirst == false) && (hwMoved == true) && (ChangeScene.function == "Escape") ){
 
 				SubjectHead.headRed ();
+				hwMovedFirst = true;
 			}
 
 			if (myHit.collider.tag == "Bear") {
@@ -94,13 +94,14 @@ public class GordonRayCast : MonoBehaviour {
 			}
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
 				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-				turnedAround = true;
+				
 				
 
 				time2 = cur_time; //set time to current time when entering turn-around;
 				//Debug.Log ("time2 = " + time2);
 
 				if(startTimeSet == false){
+					turnedAround = true;
 					startTimeSet = true;
 					time1 = time2;
 					Debug.Log ("time1 = " + time1);
@@ -118,7 +119,6 @@ public class GordonRayCast : MonoBehaviour {
 
 			}else{
 				turnedAround = false;
-				startTimeSet = false;
 			}
 			
 			
