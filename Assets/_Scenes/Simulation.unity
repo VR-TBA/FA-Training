@@ -312,10 +312,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRayDist: 15
-  SubjectHead1: {fileID: 0}
-  HomeworkAni1: {fileID: 0}
-  BearAni1: {fileID: 0}
-  CandyAni1: {fileID: 0}
+  SubjectHead: {fileID: 0}
+  HomeworkAni: {fileID: 0}
+  BearAni: {fileID: 0}
+  CandyAni: {fileID: 0}
   hwMoved: 0
   hwMovedFirst: 0
   waitedEnough: 0
@@ -9284,10 +9284,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRayDist: 15
-  SubjectHead1: {fileID: 541651187}
-  HomeworkAni1: {fileID: 75530543}
-  BearAni1: {fileID: 720468951}
-  CandyAni1: {fileID: 1887574447}
+  SubjectHead: {fileID: 541651187}
+  HomeworkAni: {fileID: 75530543}
+  BearAni: {fileID: 720468951}
+  CandyAni: {fileID: 1887574447}
   hwMoved: 0
   hwMovedFirst: 0
   waitedEnough: 0
