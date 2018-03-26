@@ -10,11 +10,14 @@ TagManager:
   - Candy
   - Bear
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - Candy2
 >>>>>>> master
   - rightWall
   - leftWall
+=======
+>>>>>>> 9e876ff713f70ccf3118ed301384fff0b4a68151
   layers:
   - Default
   - TransparentFX

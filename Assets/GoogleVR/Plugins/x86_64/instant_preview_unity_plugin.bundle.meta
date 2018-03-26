@@ -1,107 +1,67 @@
 fileFormatVersion: 2
 guid: a3bec05f359bd476388c6d0c1e34237d
 folderAsset: yes
-timeCreated: 1521495000
-licenseType: Free
+timeCreated: 1503969895
+licenseType: Pro
 PluginImporter:
-  externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 1
   iconMap: {}
   executionOrder: {}
   isPreloaded: 0
-  isOverridable: 0
   platformData:
-  - first:
-      '': OSXIntel
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      '': OSXIntel64
-    second:
+    Android:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      '': data
-    second:
+    Any:
       enabled: 0
       settings: {}
-  - first:
-      Android: Android
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Any: 
-    second:
-      enabled: 0
-      settings: {}
-  - first:
-      Editor: Editor
-    second:
+    Editor:
       enabled: 1
       settings:
         CPU: x86_64
         DefaultValueInitialized: true
         OS: OSX
-  - first:
-      Facebook: Win
-    second:
+    Linux:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Facebook: Win64
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-  - first:
-      Standalone: Linux
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      Standalone: Linux64
-    second:
+    Linux64:
       enabled: 0
       settings:
         CPU: x86_64
-  - first:
-      Standalone: LinuxUniversal
-    second:
+    LinuxUniversal:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: OSXUniversal
-    second:
+    OSXIntel:
       enabled: 0
       settings:
         CPU: None
-  - first:
-      Standalone: Win
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      Standalone: Win64
-    second:
+    OSXIntel64:
       enabled: 0
       settings:
         CPU: AnyCPU
-  - first:
-      iPhone: iOS
-    second:
+    OSXUniversal:
+      enabled: 0
+      settings:
+        CPU: None
+    Win:
+      enabled: 0
+      settings:
+        CPU: None
+    Win64:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+    iOS:
       enabled: 0
       settings:
         CompileFlags: 
         FrameworkDependencies: 
+    data:
+      enabled: 0
+      settings: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
