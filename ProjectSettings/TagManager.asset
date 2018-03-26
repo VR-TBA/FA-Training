@@ -9,6 +9,10 @@ TagManager:
   - Homework
   - Candy
   - Bear
+<<<<<<< HEAD
+=======
+  - Candy2
+>>>>>>> master
   - rightWall
   - leftWall
   layers:

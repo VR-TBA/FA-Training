@@ -68,7 +68,10 @@ public class GordonRayCast : MonoBehaviour {
 
 			}
 			if(hwMovedFirst == true){
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 				SubjectHead1.headRed ();
 			}
 

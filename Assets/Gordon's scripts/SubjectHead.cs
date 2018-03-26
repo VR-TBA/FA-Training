@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SubjectHead : MonoBehaviour {
 	float theta = 2.5f;
+	public float speed = 10f;
+
+	// void update(){
+	// 	transform.Rotate(Vector3.up, speed * Time.deltaTime);
+	// }
+
+	
 
 
 	public void headRed(){
