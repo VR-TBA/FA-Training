@@ -35,6 +35,13 @@ public class GordonRayCast : MonoBehaviour {
 		}
 	}
 
+	public float targetTime = 6.0f;
+
+	void timerEnded()
+				 {
+				    Debug.Log ("timer ended");
+				 }
+
 	public void FixedUpdate(){
 
 		Ray myRay = new Ray (transform.position, transform.forward*maxRayDist);
@@ -96,6 +103,7 @@ public class GordonRayCast : MonoBehaviour {
 				}
 
 			}
+<<<<<<< HEAD
 
 			if ((hwMoved == false )) { //check for after they take the hw back
 				
@@ -109,6 +117,26 @@ public class GordonRayCast : MonoBehaviour {
 				}
 			}
 
+=======
+			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
+				
+				 
+				 targetTime -= Time.deltaTime;
+				 
+				 if (targetTime <= 0.0f)
+				 {
+				    timerEnded();
+				 }else{
+				 	Debug.Log ("timer not ended");
+
+				 }
+				 
+				 
+				 
+				 
+
+			}
+>>>>>>> upstream/master
 		}
 
 	}
