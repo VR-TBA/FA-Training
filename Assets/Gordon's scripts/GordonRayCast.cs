@@ -12,28 +12,21 @@ public class GordonRayCast : MonoBehaviour {
 	public BearAni BearAni1;
 	public CandyAni CandyAni1;
 	public bool hwMoved = false;
+	public bool hwMovedFirst = false;
+	public bool waitedEnough = false;
 	public bool bearMoved = false;
 	public bool candyMoved = false;
-	public bool waitedEnough = false;
-	public int waitCounter = 0;
+	public bool turnedAround = true;
+	public bool startTimeSet = false;
 
-	public bool onWall = false;
+	int time1 = 0;
+	int time2 = 0;
 
-	public IEnumerator checkWait() {
-		Debug.Log ("in coroutine " );
-		waitedEnough = false;
-		yield return new WaitForSeconds(3f); // waits 10 seconds
-		Debug.Log ("waiting " );
-		waitedEnough = true; // will make the update method pick up
-		Debug.Log ("waitedEnough: " + waitedEnough.ToString());
-	}
-	void Update(){
-		if (waitedEnough == true) {
-			Debug.Log ("waited long enough");
-		} else {
-			Debug.Log ("didn't wait long enough");
-		}
-	}
+	//public float targetTime = 6.0f;
+
+	 public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+
+ 	int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
 	public void FixedUpdate(){
 
@@ -60,9 +53,11 @@ public class GordonRayCast : MonoBehaviour {
 				if (hwMoved == false) {
 					HomeworkAni1.moveHW ();
 					hwMoved = true;
+					hwMovedFirst = true;
 				} else {
+
 					HomeworkAni1.removeHW ();
-					SubjectHead1.fixHead ();
+					
 					hwMoved = false;
 				}
 					
@@ -72,7 +67,8 @@ public class GordonRayCast : MonoBehaviour {
 				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
-			if(hwMoved == true){
+			if(hwMovedFirst == true){
+
 				SubjectHead1.headRed ();
 			}
 
@@ -96,19 +92,36 @@ public class GordonRayCast : MonoBehaviour {
 				}
 
 			}
-
-			if ((hwMoved == false )) { //check for after they take the hw back
+			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
+				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+				turnedAround = true;
 				
-				if ((myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall")) {
-					onWall = true;
-					Debug.Log ("hit" + myHit.collider.tag);
-					StartCoroutine (checkWait ());
 
-				} else {
-					onWall = false;
+				time2 = cur_time; //set time to current time when entering turn-around;
+				//Debug.Log ("time2 = " + time2);
+
+				if(startTimeSet == false){
+					startTimeSet = true;
+					time1 = time2;
+					Debug.Log ("time1 = " + time1);
 				}
-			}
 
+
+				if( ((time2-time1) > 9) && (turnedAround == true) ){
+					Debug.Log ("waited 10s: " + (time2-time1));
+					waitedEnough = true;
+					SubjectHead1.fixHead ();
+
+				}
+				 
+				 
+
+			}else{
+				turnedAround = false;
+				startTimeSet = false;
+			}
+			
+			
 		}
 
 	}
