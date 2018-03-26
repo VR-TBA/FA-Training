@@ -9,6 +9,9 @@ TagManager:
   - Homework
   - Candy
   - Bear
+  - Candy2
+  - rightWall
+  - leftWall
   layers:
   - Default
   - TransparentFX
