@@ -14,26 +14,6 @@ public class GordonRayCast : MonoBehaviour {
 	public bool hwMoved = false;
 	public bool bearMoved = false;
 	public bool candyMoved = false;
-	public bool waitedEnough = false;
-	public int waitCounter = 0;
-
-	public bool onWall = false;
-
-	public IEnumerator checkWait() {
-		Debug.Log ("in coroutine " );
-		waitedEnough = false;
-		yield return new WaitForSeconds(3f); // waits 10 seconds
-		Debug.Log ("waiting " );
-		waitedEnough = true; // will make the update method pick up
-		Debug.Log ("waitedEnough: " + waitedEnough.ToString());
-	}
-	void Update(){
-		if (waitedEnough == true) {
-			Debug.Log ("waited long enough");
-		} else {
-			Debug.Log ("didn't wait long enough");
-		}
-	}
 
 	public float targetTime = 6.0f;
 
@@ -103,21 +83,6 @@ public class GordonRayCast : MonoBehaviour {
 				}
 
 			}
-<<<<<<< HEAD
-
-			if ((hwMoved == false )) { //check for after they take the hw back
-				
-				if ((myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall")) {
-					onWall = true;
-					Debug.Log ("hit" + myHit.collider.tag);
-					StartCoroutine (checkWait ());
-
-				} else {
-					onWall = false;
-				}
-			}
-
-=======
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
 				
 				 
@@ -136,7 +101,6 @@ public class GordonRayCast : MonoBehaviour {
 				 
 
 			}
->>>>>>> upstream/master
 		}
 
 	}
