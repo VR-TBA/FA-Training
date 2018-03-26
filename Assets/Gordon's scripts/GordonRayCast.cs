@@ -47,7 +47,9 @@ public class GordonRayCast : MonoBehaviour {
 				if (hwMoved == false) {
 					HomeworkAni1.moveHW ();
 					hwMoved = true;
-				} else {
+				} 
+
+				else {
 					HomeworkAni1.removeHW ();
 					SubjectHead1.fixHead ();
 					hwMoved = false;
@@ -59,7 +61,7 @@ public class GordonRayCast : MonoBehaviour {
 				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
-			if(hwMoved == true){
+			if(hwMoved == true && ChangeScene.function == "Escape"){
 				SubjectHead1.headRed ();
 			}
 
