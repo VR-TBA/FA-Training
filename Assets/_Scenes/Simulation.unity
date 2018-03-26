@@ -274,7 +274,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17719733}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -321,9 +321,12 @@ MonoBehaviour:
   BearAni1: {fileID: 0}
   CandyAni1: {fileID: 0}
   hwMoved: 0
+  hwMovedFirst: 0
+  waitedEnough: 0
   bearMoved: 0
   candyMoved: 0
-  targetTime: 6
+  turnedAround: 1
+  startTimeSet: 0
 --- !u!1 &26591382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,11 +4139,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400020, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: usePerEyeCameras
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2015248, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400020, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Enabled
@@ -4220,7 +4223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
@@ -4717,7 +4720,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417489877}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -440.7, y: -121.07334, z: 220}
+  m_LocalPosition: {x: -440.7, y: -113.77, z: 210.5}
   m_LocalScale: {x: 40, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 1449962932}
@@ -8398,7 +8401,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 722955254}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -9281,7 +9284,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 823934314}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca33085a27045451b85797be995db9a8, type: 3}
   m_Name: 
@@ -9292,9 +9295,12 @@ MonoBehaviour:
   BearAni1: {fileID: 720468951}
   CandyAni1: {fileID: 1887574447}
   hwMoved: 0
+  hwMovedFirst: 0
+  waitedEnough: 0
   bearMoved: 0
   candyMoved: 0
-  targetTime: 6
+  turnedAround: 1
+  startTimeSet: 0
 --- !u!1 &825193023
 GameObject:
   m_ObjectHideFlags: 0
