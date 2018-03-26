@@ -16,6 +16,7 @@ public class GordonRayCast : MonoBehaviour {
 	public bool waitedEnough = false;
 	public bool bearMoved = false;
 	public bool candyMoved = false;
+<<<<<<< HEAD
 	public bool turnedAround = true;
 	public bool startTimeSet = false;
 
@@ -27,6 +28,8 @@ public class GordonRayCast : MonoBehaviour {
 	 public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 
  	int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+=======
+>>>>>>> parent of 356ebb0... some logic for waiting
 
 	public void FixedUpdate(){
 
@@ -68,6 +71,10 @@ public class GordonRayCast : MonoBehaviour {
 
 			}
 			if(hwMovedFirst == true){
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 				SubjectHead1.headRed ();
 			}
 
@@ -91,6 +98,7 @@ public class GordonRayCast : MonoBehaviour {
 				}
 
 			}
+<<<<<<< HEAD
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
 				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 				turnedAround = true;
@@ -121,6 +129,8 @@ public class GordonRayCast : MonoBehaviour {
 			}
 			
 			
+=======
+>>>>>>> parent of 356ebb0... some logic for waiting
 		}
 
 	}

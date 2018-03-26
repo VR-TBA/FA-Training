@@ -38,7 +38,15 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
+=======
   m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+>>>>>>> master
+=======
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+>>>>>>> 9e876ff713f70ccf3118ed301384fff0b4a68151
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2022,9 +2030,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<< HEAD
+      - m_Target: {fileID: 1563128160}
+=======
+      - m_Target: {fileID: 355246569}
+>>>>>>> 9e876ff713f70ccf3118ed301384fff0b4a68151
+        m_MethodName: ChangeTheScene
+        m_Mode: 3
+=======
       - m_Target: {fileID: 355246569}
         m_MethodName: 
         m_Mode: 1
+>>>>>>> master
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
