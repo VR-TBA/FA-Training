@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour {
 
-	public static string function;
+	public static string behavior;
 
 	void Start()
 	{
-		Debug.Log (function);
+		Debug.Log (behavior);
 	}
 
 	public void ChangeTheScene(int sceneChange)
@@ -19,25 +19,25 @@ public class ChangeScene : MonoBehaviour {
 
 	public void Escape()
 	{
-		function = "Escape";
-		ChangeTheScene (1);
+		behavior = "Escape";
+		ChangeTheScene (2);
 	}
 
 	public void Access()
 	{
-		function = "Access";
-		ChangeTheScene (1);
+		behavior = "Access";
+		ChangeTheScene (2);
 	}
 
 	public void Attention()
 	{
-		function = "Attention";
-		ChangeTheScene (1);
+		behavior = "Attention";
+		ChangeTheScene (2);
 	}
 
 	public void Sensory()
 	{
-		function = "Sensory";
-		ChangeTheScene (1);
+		behavior = "Sensory";
+		ChangeTheScene (3);
 	}
 }
