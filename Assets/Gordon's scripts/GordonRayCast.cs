@@ -121,7 +121,8 @@ public class GordonRayCast : MonoBehaviour {
 
 			}else{
 				turnedAround = false;
-			}
+			}			
+		}
 
 			// Access function
 			if (ChangeScene.function == "Access") {
