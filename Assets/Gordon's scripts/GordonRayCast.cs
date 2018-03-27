@@ -15,6 +15,8 @@ public class GordonRayCast : MonoBehaviour {
 	public bool hwMovedFirst = false;
 	public bool waitedEnough = false;
 	public bool bearMoved = false;
+	public bool bearMovedFirst = false;
+	public bool candyMovedFirst = false;
 	public bool candyMoved = false;
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
@@ -119,11 +121,58 @@ public class GordonRayCast : MonoBehaviour {
 
 			}else{
 				turnedAround = false;
-			}
-			
-			
+			}			
 		}
 
+			// Access function
+			if (ChangeScene.function == "Access") {
+
+				if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.function == "Escape")*/) {
+						hwMovedFirst = true;
+				}
+
+				if (myHit.collider.tag == "Bear") {
+					if (bearMoved == false) {
+						BearAni.moveBear ();
+						bearMovedFirst = true;
+
+						if (bearMovedFirst == true) {	// give bear back
+							SubjectHead.fixHead ();
+						}
+
+					} else {
+						BearAni.removeBear ();
+						bearMoved = true;
+
+						if (bearMoved == true && bearMovedFirst == true) {	// take bear
+							SubjectHead.headRed ();
+							bearMovedFirst = false;
+						}
+					}
+
+				}
+				if (myHit.collider.tag == "Candy") {
+					if (candyMoved == false) {
+						CandyAni.moveCandy ();
+						candyMovedFirst = true;
+
+						if (candyMovedFirst == true) {	// give candy
+							SubjectHead.fixHead ();
+						}
+
+					} else {
+						CandyAni.removeCandy ();
+						candyMoved = true;
+
+						if (candyMoved == true && candyMovedFirst == true) {	// take candy
+							SubjectHead.headRed ();
+							candyMovedFirst = false;
+						}
+						
+					}
+				}
+			} // end access function
+		}
 	}
 
 }
