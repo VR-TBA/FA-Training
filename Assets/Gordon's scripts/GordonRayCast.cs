@@ -7,20 +7,28 @@ public class GordonRayCast : MonoBehaviour {
 
 	public float maxRayDist = 15;
 
-	public SubjectHead SubjectHead1;
-	public HomeworkAni HomeworkAni1;
-	public BearAni BearAni1;
-	public CandyAni CandyAni1;
+	public SubjectHead SubjectHead;
+	public HomeworkAni HomeworkAni;
+	public BearAni BearAni;
+	public CandyAni CandyAni;
 	public bool hwMoved = false;
+	public bool hwMovedFirst = false;
+	public bool waitedEnough = false;
 	public bool bearMoved = false;
+	public bool bearMovedFirst = false;
+	public bool candyMovedFirst = false;
 	public bool candyMoved = false;
+	public bool turnedAround = false;
+	public bool startTimeSet = false;
 
-	public float targetTime = 6.0f;
+	int time1 = 0;
+	int time2 = 0;
 
-	void timerEnded()
-				 {
-				    Debug.Log ("timer ended");
-				 }
+	//public float targetTime = 6.0f;
+
+	 public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+
+ 	int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
 	public void FixedUpdate(){
 
@@ -45,13 +53,12 @@ public class GordonRayCast : MonoBehaviour {
 			if (myHit.collider.tag == "Homework") {
 				Debug.Log ("hit " + myHit.collider.tag);
 				if (hwMoved == false) {
-					HomeworkAni1.moveHW ();
+					HomeworkAni.moveHW ();
 					hwMoved = true;
-				} 
+				} else {
 
-				else {
-					HomeworkAni1.removeHW ();
-					SubjectHead1.fixHead ();
+					HomeworkAni.removeHW ();
+					
 					hwMoved = false;
 				}
 					
@@ -61,50 +68,110 @@ public class GordonRayCast : MonoBehaviour {
 				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
-			if(hwMoved == true && ChangeScene.function == "Escape"){
-				SubjectHead1.headRed ();
+			if( (hwMovedFirst == false) && (hwMoved == true) && (ChangeScene.function == "Escape") ){
+
+				SubjectHead.headRed ();
+				hwMovedFirst = true;
 			}
 
 			if (myHit.collider.tag == "Bear") {
 				if (bearMoved == false) {
-					BearAni1.moveBear ();
+					BearAni.moveBear ();
 					bearMoved = true;
 				} else {
-					BearAni1.removeBear ();
+					BearAni.removeBear ();
 					bearMoved = false;
 				}
 
 			}
 			if (myHit.collider.tag == "Candy") {
 				if (candyMoved == false) {
-					CandyAni1.moveCandy ();
+					CandyAni.moveCandy ();
 					candyMoved = true;
 				} else {
-					CandyAni1.removeCandy ();
+					CandyAni.removeCandy ();
 					candyMoved = false;
 				}
 
 			}
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
+				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 				
-				 
-				 targetTime -= Time.deltaTime;
-				 
-				 if (targetTime <= 0.0f)
-				 {
-				    timerEnded();
-				 }else{
-				 	Debug.Log ("timer not ended");
+				
 
-				 }
-				 
-				 
+				time2 = cur_time; //set time to current time when entering turn-around;
+				//Debug.Log ("time2 = " + time2);
+
+				if(startTimeSet == false){
+					turnedAround = true;
+					startTimeSet = true;
+					time1 = time2;
+					Debug.Log ("time1 = " + time1);
+				}
+
+
+				if( ((time2-time1) > 9) && (turnedAround == true) ){
+					Debug.Log ("waited 10s: " + (time2-time1));
+					waitedEnough = true;
+					SubjectHead.fixHead ();
+
+				}
 				 
 				 
 
+			}else{
+				turnedAround = false;
 			}
-		}
 
+			// Access function
+			if (ChangeScene.function == "Access") {
+
+				if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.function == "Escape")*/) {
+						hwMovedFirst = true;
+				}
+
+				if (myHit.collider.tag == "Bear") {
+					if (bearMoved == false) {
+						BearAni.moveBear ();
+						bearMovedFirst = true;
+
+						if (bearMovedFirst == true) {	// give bear back
+							SubjectHead.fixHead ();
+						}
+
+					} else {
+						BearAni.removeBear ();
+						bearMoved = true;
+
+						if (bearMoved == true && bearMovedFirst == true) {	// take bear
+							SubjectHead.headRed ();
+							bearMovedFirst = false;
+						}
+					}
+
+				}
+				if (myHit.collider.tag == "Candy") {
+					if (candyMoved == false) {
+						CandyAni.moveCandy ();
+						candyMovedFirst = true;
+
+						if (candyMovedFirst == true) {	// give candy
+							SubjectHead.fixHead ();
+						}
+
+					} else {
+						CandyAni.removeCandy ();
+						candyMoved = true;
+
+						if (candyMoved == true && candyMovedFirst == true) {	// take candy
+							SubjectHead.headRed ();
+							candyMovedFirst = false;
+						}
+						
+					}
+				}
+			} // end access function
+		}
 	}
 
 }
