@@ -3231,7 +3231,7 @@ GameObject:
   - component: {fileID: 198759888}
   m_Layer: 0
   m_Name: Component_2
-  m_TagString: Untagged
+  m_TagString: Bag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9187,6 +9187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563408767}
   - component: {fileID: 563408769}
+  - component: {fileID: 563408770}
   m_Layer: 0
   m_Name: bag
   m_TagString: Bag
@@ -9205,6 +9206,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adde113ba39fc4e1b8df0052069909e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &563408770
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563408768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!1 &563717038
 GameObject:
   m_ObjectHideFlags: 0
@@ -13315,7 +13330,7 @@ MonoBehaviour:
   HomeworkAni: {fileID: 75530543}
   BearAni: {fileID: 720468951}
   CandyAni: {fileID: 1887574447}
-  BagAni: {fileID: 0}
+  BagAni: {fileID: 563408769}
   hwMoved: 0
   hwMovedFirst: 0
   waitedEnough: 0

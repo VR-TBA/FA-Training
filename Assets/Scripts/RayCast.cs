@@ -182,23 +182,26 @@ public class RayCast : MonoBehaviour {
 			if (myHit.collider.tag == "Bag") {
 				if (bagMoved == false) {
 					BagAni.moveBag ();
-					bagMovedFirst = true;
-
-					if (bagMovedFirst == true) {	// move bag
-						SubjectHead.headRed ();
-					}
-
-				} else {
-					BagAni.removeBag ();
 					bagMoved = true;
+				} else {
 
-					if (bagMoved == true && bagMovedFirst == true) {	// put bag back
-						SubjectHead.fixHead ();
-						bagMovedFirst = false;
-					}
+					BagAni.removeBag ();
+
+					bagMoved = false;
 				}
-
+					
 			}
+
+			if( (bagMovedFirst == false) && (bagMoved == true)){
+				SubjectHead.headRed ();
+				bagMovedFirst = true;
+			}
+
+			if (bagMoved == false && bagMovedFirst == true) {	// put bag back
+				SubjectHead.fixHead ();
+				bagMovedFirst = false;
+			}
+
 		}
 		// End Attention Function
 		}
