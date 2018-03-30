@@ -11,7 +11,6 @@ public class RayCast : MonoBehaviour {
 	public HomeworkAni HomeworkAni;
 	public BearAni BearAni;
 	public CandyAni CandyAni;
-	public BagAni BagAni;
 	public bool hwMoved = false;
 	public bool hwMovedFirst = false;
 	public bool waitedEnough = false;
@@ -19,8 +18,6 @@ public class RayCast : MonoBehaviour {
 	public bool bearMovedFirst = false;
 	public bool candyMovedFirst = false;
 	public bool candyMoved = false;
-	public bool bagMovedFirst = false;
-	public bool bagMoved = false;
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
 	public bool wallHit = false;
@@ -180,62 +177,11 @@ public class RayCast : MonoBehaviour {
 
 		// Start Attention Function
 		if (ChangeScene.behavior == "Attention") {
-
-			/*
-
-			if (myHit.collider.tag == "Bag") {
-				if (bagMoved == false) {
-					BagAni.moveBag ();
-					bagMoved = true;
-				} else {
-
-					BagAni.removeBag ();
-
-					bagMoved = false;
-				}
-					
-			}
-
-			if( (bagMovedFirst == false) && (bagMoved == true)){
-				SubjectHead.headRed ();
-				bagMovedFirst = true;
-			}
-
-			if (bagMoved == false && bagMovedFirst == true) {	// put bag back
-				SubjectHead.fixHead ();
-				bagMovedFirst = false;
-			}
-
-		}
-		// End Bag
 		// Start Wall
 
-			if ((myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall")) {
-				Debug.Log ("hitsubject " + myHit.collider.tag);
-				if (wallHit == false) {
-					HomeworkAni.moveHW ();
-					wallHit = true;
-				} else {
-
-					HomeworkAni.removeHW ();
-
-					wallHit = false;
-				}
-
-
-			}
-			if( (wallHitFirst == false) && (wallHit == true)){
-				SubjectHead.headRed ();
-				wallHitFirst = true;
-			}
-			if (wallHit == false && wallHitFirst == true) {
-				SubjectHead.fixHead ();
-				wallHitFirst = false;
-			}
-		*/
 			if (wallHit == false){
 			switch(myHit.collider.tag){
-				case "Subject":
+				case "rightWall":
 					wallHit = true;
 				SubjectHead.headRed ();
 				break;
@@ -252,7 +198,7 @@ public class RayCast : MonoBehaviour {
 			}
 			if (wallHit == true) {
 				switch(myHit.collider.tag){
-				case "rightWall":
+				case "Subject":
 					SubjectHead.fixHead ();
 					break;
 				default:
