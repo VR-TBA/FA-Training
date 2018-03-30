@@ -1,6 +1,6 @@
 /************************************************************************************
 
-Copyright   :   Copyright 2014 Oculus VR, LLC. All Rights reserved.
+Copyright   :   Copyright 2017 Oculus VR, LLC. All Rights reserved.
 
 Licensed under the Oculus VR Rift SDK License Version 3.4.1 (the "License");
 you may not use the Oculus VR Rift SDK except in compliance with the License,
@@ -85,6 +85,11 @@ public class OVROverlay : MonoBehaviour
 	/// If true, the texture's content is copied to the compositor each frame.
 	/// </summary>
 	public bool isDynamic = false;
+
+	/// <summary>
+	/// If true, the layer would be used to present protected content (e.g. HDCP). The flag is effective only on PC.
+	/// </summary>
+	public bool isProtectedContent = false;
 
 	/// <summary>
 	/// Specify overlay's shape
@@ -385,6 +390,11 @@ public class OVROverlay : MonoBehaviour
 
 			if (rt.format == RenderTextureFormat.ARGBHalf || rt.format == RenderTextureFormat.ARGBFloat || rt.format == RenderTextureFormat.RGB111110Float)
 				newDesc.Format = OVRPlugin.EyeTextureFormat.R16G16B16A16_FP;
+		}
+
+		if (isProtectedContent)
+		{
+			newDesc.LayerFlags |= (int)OVRPlugin.LayerFlags.ProtectedContent;
 		}
 
 		return newDesc;
