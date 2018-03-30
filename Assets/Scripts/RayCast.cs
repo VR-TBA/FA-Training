@@ -11,6 +11,7 @@ public class RayCast : MonoBehaviour {
 	public HomeworkAni HomeworkAni;
 	public BearAni BearAni;
 	public CandyAni CandyAni;
+	public BagAni BagAni;
 	public bool hwMoved = false;
 	public bool hwMovedFirst = false;
 	public bool waitedEnough = false;
@@ -18,6 +19,8 @@ public class RayCast : MonoBehaviour {
 	public bool bearMovedFirst = false;
 	public bool candyMovedFirst = false;
 	public bool candyMoved = false;
+	public bool bagMovedFirst = false;
+	public bool bagMoved = false;
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
 
@@ -172,6 +175,34 @@ public class RayCast : MonoBehaviour {
 					}
 				}
 			} // end access function
+
+		// Start Attention Function
+		if (ChangeScene.behavior == "Attention") {
+			if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.behavior == "Escape")*/) {
+				hwMovedFirst = true;
+			}
+
+			if (myHit.collider.tag == "Bag") {
+				if (bagMoved == false) {
+					BagAni.moveBag ();
+					bagMovedFirst = true;
+
+					if (bagMovedFirst == true) {	// move bag
+						SubjectHead.headRed ();
+					}
+
+				} else {
+					BagAni.removeBag ();
+					bagMoved = true;
+
+					if (bagMoved == true && bagMovedFirst == true) {	// put bag back
+						SubjectHead.fixHead ();
+						bagMovedFirst = false;
+					}
+				}
+
+			}
+		}
+		// End Attention Function
 		}
 	}
-
