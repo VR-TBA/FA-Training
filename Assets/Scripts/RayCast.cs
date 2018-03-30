@@ -20,6 +20,8 @@ public class RayCast : MonoBehaviour {
 	public bool candyMoved = false;
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
+	public bool wallHit = false;
+	public bool wallHitFirst = false;
 
 	int time1 = 0;
 	int time2 = 0;
@@ -172,6 +174,40 @@ public class RayCast : MonoBehaviour {
 					}
 				}
 			} // end access function
+
+		// Start Attention Function
+		if (ChangeScene.behavior == "Attention") {
+		// Start Wall
+
+			if (wallHit == false){
+			switch(myHit.collider.tag){
+				case "rightWall":
+					wallHit = true;
+				SubjectHead.headRed ();
+				break;
+				case "leftWall":
+					wallHit = true;
+				SubjectHead.headRed ();
+				break;
+			//case "Subject":
+			//	SubjectHead.fixHead ();
+			//	break;
+			default:
+				break;
+			}
+			}
+			if (wallHit == true) {
+				switch(myHit.collider.tag){
+				case "Subject":
+					SubjectHead.fixHead ();
+					break;
+				default:
+					break;
+				}
+			}
+				
+				
+				}// End Future Attention Scene
+
 		}
 	}
-

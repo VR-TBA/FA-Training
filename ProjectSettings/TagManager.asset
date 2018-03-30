@@ -12,6 +12,7 @@ TagManager:
   - Candy2
   - rightWall
   - leftWall
+  - Bag
   layers:
   - Default
   - TransparentFX
