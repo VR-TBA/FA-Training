@@ -178,9 +178,6 @@ public class RayCast : MonoBehaviour {
 
 		// Start Attention Function
 		if (ChangeScene.behavior == "Attention") {
-			if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.behavior == "Escape")*/) {
-				hwMovedFirst = true;
-			}
 
 			if (myHit.collider.tag == "Bag") {
 				if (bagMoved == false) {

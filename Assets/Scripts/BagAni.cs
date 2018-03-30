@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BagAni : MonoBehaviour {
 
-	// Use this for initialization
 	public void moveBag(){
 		transform.localPosition = new Vector3(10f, 0f,7f);
 		transform.localRotation = Quaternion.Euler( new Vector3(0f, 50f,0f) );
