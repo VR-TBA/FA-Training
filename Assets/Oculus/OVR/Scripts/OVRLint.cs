@@ -1,6 +1,6 @@
 /************************************************************************************
 
-Copyright   :   Copyright 2014 Oculus VR, LLC. All Rights reserved.
+Copyright   :   Copyright 2017 Oculus VR, LLC. All Rights reserved.
 
 Licensed under the Oculus VR Rift SDK License Version 3.4.1 (the "License");
 you may not use the Oculus VR Rift SDK except in compliance with the License,
@@ -533,7 +533,7 @@ public class OVRLint : EditorWindow
 
 	static void CheckStaticAndroidIssues()
 	{
-		AndroidSdkVersions recommendedAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel19;
+		AndroidSdkVersions recommendedAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel21;
 		if ((int)PlayerSettings.Android.minSdkVersion < (int)recommendedAndroidSdkVersion)
 		{
 			AddFix("Optimize Android API Level", "To avoid legacy workarounds, please require at least API level " + (int)recommendedAndroidSdkVersion, delegate (UnityEngine.Object obj, bool last, int selected)

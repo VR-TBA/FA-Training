@@ -5,39 +5,64 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour {
 
-	public static string function;
+	public static string behavior;
+
+	public GameObject intro;
+	public GameObject menu;
+
+	bool nextMenuB= false;
+
+
 
 	void Start()
 	{
-		Debug.Log (function);
+		Debug.Log (behavior);
+
+		if(nextMenuB == false){
+			intro.SetActive(true);
+			menu.SetActive(false);
+			
+		}
+
+		
+		
+
+		
 	}
 
-	public void ChangeTheScene(int sceneChange)
+	public void ChangeTheScene(string sceneChange)
 	{
 		SceneManager.LoadScene (sceneChange);
 	}
 
+	public void nextMenu(){
+		intro.SetActive(false);
+		menu.SetActive(true);
+		nextMenuB = true;
+
+	}
+
 	public void Escape()
 	{
-		function = "Escape";
-		ChangeTheScene (1);
+		behavior = "Escape";
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Access()
 	{
-		function = "Access";
-		ChangeTheScene (1);
+		behavior = "Access";
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Attention()
 	{
-		function = "Attention";
-		ChangeTheScene (1);
+		behavior = "Attention";
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Sensory()
 	{
-		function = "Sensory";
-		ChangeTheScene (1);
+		behavior = "Sensory";
+		ChangeTheScene ("Sensory Simulation");
 	}
 }
