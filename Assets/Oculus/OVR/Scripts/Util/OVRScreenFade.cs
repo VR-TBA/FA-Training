@@ -1,6 +1,6 @@
 /************************************************************************************
 
-Copyright   :   Copyright 2014 Oculus VR, LLC. All Rights reserved.
+Copyright   :   Copyright 2017 Oculus VR, LLC. All Rights reserved.
 
 Licensed under the Oculus VR Rift SDK License Version 3.4.1 (the "License");
 you may not use the Oculus VR Rift SDK except in compliance with the License,
@@ -37,6 +37,8 @@ public class OVRScreenFade : MonoBehaviour
 
     private float uiFadeAlpha = 0;
 
+	private MeshRenderer fadeRenderer;
+	private MeshFilter fadeMesh;
 	private Material fadeMaterial = null;
     private bool isFading = false;
 
@@ -46,6 +48,56 @@ public class OVRScreenFade : MonoBehaviour
 	{
 		// create the fade material
 		fadeMaterial = new Material(Shader.Find("Oculus/Unlit Transparent Color"));
+		fadeMesh = gameObject.AddComponent<MeshFilter>();
+		fadeRenderer = gameObject.AddComponent<MeshRenderer>();
+
+		var mesh = new Mesh();
+		fadeMesh.mesh = mesh;
+
+		Vector3[] vertices = new Vector3[4];
+
+		float width = 2f;
+		float height = 2f;
+		float depth = 1f;
+
+		vertices[0] = new Vector3(-width, -height, depth);
+		vertices[1] = new Vector3(width, -height, depth);
+		vertices[2] = new Vector3(-width, height, depth);
+		vertices[3] = new Vector3(width, height, depth);
+
+		mesh.vertices = vertices;
+
+		int[] tri = new int[6];
+
+		tri[0] = 0;
+		tri[1] = 2;
+		tri[2] = 1;
+
+		tri[3] = 2;
+		tri[4] = 3;
+		tri[5] = 1;
+
+		mesh.triangles = tri;
+
+		Vector3[] normals = new Vector3[4];
+
+		normals[0] = -Vector3.forward;
+		normals[1] = -Vector3.forward;
+		normals[2] = -Vector3.forward;
+		normals[3] = -Vector3.forward;
+
+		mesh.normals = normals;
+
+		Vector2[] uv = new Vector2[4];
+
+		uv[0] = new Vector2(0, 0);
+		uv[1] = new Vector2(1, 0);
+		uv[2] = new Vector2(0, 1);
+		uv[3] = new Vector2(1, 1);
+
+		mesh.uv = uv;
+
+		fadeRenderer.material = fadeMaterial;
 	}
 
     /// <summary>
@@ -76,15 +128,27 @@ public class OVRScreenFade : MonoBehaviour
         }
     }
 
+	void OnEnable()
+	{
+		if (!fadeOnStart)
+		{
+			SetFadeLevel(0);
+		}
+	}
+
 	/// <summary>
 	/// Cleans up the fade material
 	/// </summary>
 	void OnDestroy()
 	{
+		if (fadeRenderer != null)
+			Destroy(fadeRenderer);
+		
 		if (fadeMaterial != null)
-		{
 			Destroy(fadeMaterial);
-		}
+		
+		if (fadeMesh != null)
+			Destroy(fadeMesh);
 	}
 
     /// <summary>
@@ -132,27 +196,8 @@ public class OVRScreenFade : MonoBehaviour
         if (fadeMaterial != null)
         {
             fadeMaterial.color = color;
+			fadeRenderer.material = fadeMaterial;
+			fadeRenderer.enabled = isFading;
         }
     }
-
-	/// <summary>
-	/// Renders the fade overlay when attached to a camera object
-	/// </summary>
-	void OnPostRender()
-	{
-		if (isFading)
-		{
-			fadeMaterial.SetPass(0);
-			GL.PushMatrix();
-			GL.LoadOrtho();
-			GL.Color(fadeMaterial.color);
-			GL.Begin(GL.QUADS);
-			GL.Vertex3(0f, 0f, -12f);
-			GL.Vertex3(0f, 1f, -12f);
-			GL.Vertex3(1f, 1f, -12f);
-			GL.Vertex3(1f, 0f, -12f);
-			GL.End();
-			GL.PopMatrix();
-		}
-	}
 }

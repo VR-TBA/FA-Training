@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 
-Copyright   :   Copyright 2014 Oculus VR, LLC. All Rights reserved.
+Copyright   :   Copyright 2017 Oculus VR, LLC. All Rights reserved.
 
 Licensed under the Oculus VR Rift SDK License Version 3.4.1 (the "License");
 you may not use the Oculus VR Rift SDK except in compliance with the License,
@@ -930,9 +930,6 @@ public class OVRManager : MonoBehaviour
 		}
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-		// We want to set up our touchpad messaging system
-		OVRTouchpad.Create();
-
 		// Turn off chromatic aberration by default to save texture bandwidth.
 		chromatic = false;
 #endif
