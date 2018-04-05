@@ -50,16 +50,14 @@ public class Sensory : MonoBehaviour {
 
 		for (int i = 0; i < 15; i++) {
 			yield return new WaitForSeconds (1);
-			//anim.SetTrigger ("SIB");
-			anim.Play("Jump");
+			anim.SetTrigger ("SIB");
 		}
 
 		Debug.Log ("Second text prompt should appear now. SIB will stop in 15 seconds.");
 
 		for (int i = 0; i < 15; i++) {
 			yield return new WaitForSeconds (1);
-			//anim.SetTrigger ("SIB");
-			anim.Play("Jump");
+			anim.SetTrigger ("SIB");
 		}
 	}
 }
