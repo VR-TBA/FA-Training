@@ -5,17 +5,17 @@ using UnityEngine;
 public class EscapeKidAni : MonoBehaviour {
 
 
-	public float speed;
+	//public float speed;
 	Animator anim;
-	Rigidbody kidRigid;
-	private float waitTime;
-	public float startWaitTime;
+	//Rigidbody kidRigid;
+	//private float waitTime;
+	//public float startWaitTime;
 
-	public Transform[] moveSpots;
-	private int randomSpot;
+	//public Transform[] moveSpots;
+	//private int randomSpot;
 	bool sibBool = false;
 
-	int jumpHash = Animator.StringToHash("Jump");
+	//int jumpHash = Animator.StringToHash("Jump");
 
 	// Use this for initialization
 	void Start () 
@@ -38,7 +38,9 @@ public class EscapeKidAni : MonoBehaviour {
 	void Update () 
 	{
 		if(sibBool == true){
-			anim.Play("Land");
+			//anim.Play("Land");
+			anim.SetTrigger ("SIB");
+			//anim.SetTrigger ("Land");
 		}else{
 			anim.SetTrigger("Grounded");
 		}

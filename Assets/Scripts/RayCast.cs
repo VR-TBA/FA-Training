@@ -46,6 +46,7 @@ public class RayCast : MonoBehaviour {
 			//Debug.Log ("hit " + myHit.collider.tag);
 
 			if (myHit.collider.tag == "Homework") {
+
 				Debug.Log ("hit " + myHit.collider.tag);
 				if (hwMoved == false) {
 					HomeworkAni.moveHW ();
@@ -63,6 +64,7 @@ public class RayCast : MonoBehaviour {
 			//if( (hwMovedFirst == false) && (hwMoved == true)  ){
 
 				//SubjectHead.headRed ();
+				//Debug.Log("calling nonSensory SIB ");
 				escapeAni.SIB();
 
 				hwMovedFirst = true;
@@ -179,11 +181,13 @@ public class RayCast : MonoBehaviour {
 				switch(myHit.collider.tag){
 				case "rightWall":
 					wallHit = true;
-					SubjectHead.headRed ();
+					//SubjectHead.headRed ();
+					escapeAni.SIB();
 					break;
 				case "leftWall":
 					wallHit = true;
-					SubjectHead.headRed ();
+					//SubjectHead.headRed ();
+					escapeAni.SIB();
 					break;
 				default:
 					break;
@@ -192,7 +196,8 @@ public class RayCast : MonoBehaviour {
 			if (wallHit == true) {
 				switch(myHit.collider.tag){
 				case "Subject":
-					SubjectHead.fixHead ();
+					//SubjectHead.fixHead ();
+					escapeAni.stopSIB();
 					break;
 				default:
 					break;

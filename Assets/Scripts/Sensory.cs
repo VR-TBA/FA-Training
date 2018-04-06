@@ -45,21 +45,19 @@ public class Sensory : MonoBehaviour {
 
 	IEnumerator SIB()
 	{
-		yield return new WaitForSeconds (15);
+		yield return new WaitForSeconds (Random.Range(3, 15));
 		Debug.Log ("First text prompt should appear now.");
 
 		for (int i = 0; i < 15; i++) {
-			yield return new WaitForSeconds (1);
-			//anim.SetTrigger ("SIB");
-			anim.Play("Jump");
+			yield return new WaitForSeconds (Random.Range(3, 15));
+			anim.SetTrigger ("SIB");
 		}
 
 		Debug.Log ("Second text prompt should appear now. SIB will stop in 15 seconds.");
 
 		for (int i = 0; i < 15; i++) {
-			yield return new WaitForSeconds (1);
-			//anim.SetTrigger ("SIB");
-			anim.Play("Jump");
+			yield return new WaitForSeconds (Random.Range(3, 15));
+			anim.SetTrigger ("SIB");
 		}
 	}
 }
