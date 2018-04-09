@@ -22,6 +22,10 @@ public class RayCast : MonoBehaviour {
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
 	public bool wallHit = false;
+	public AudioSource mySource;
+	public AudioClip whining;
+	public AudioClip groan;
+
 
 
 	int time1 = 0;
@@ -66,6 +70,7 @@ public class RayCast : MonoBehaviour {
 				//SubjectHead.headRed ();
 				//Debug.Log("calling nonSensory SIB ");
 				escapeAni.SIB();
+				mySource.PlayOneShot (groan);
 
 				hwMovedFirst = true;
 			}
@@ -144,6 +149,7 @@ public class RayCast : MonoBehaviour {
 						if (bearMoved == true && bearMovedFirst == true) {	// take bear
 							//SubjectHead.headRed ();
 							escapeAni.SIB();
+							mySource.PlayOneShot (whining);
 							bearMovedFirst = false;
 						}
 					}
@@ -166,6 +172,7 @@ public class RayCast : MonoBehaviour {
 						if (candyMoved == true && candyMovedFirst == true) {	// take candy
 							//SubjectHead.headRed ();
 							escapeAni.SIB();
+							mySource.PlayOneShot (whining);
 							candyMovedFirst = false;
 						}
 						
@@ -173,8 +180,11 @@ public class RayCast : MonoBehaviour {
 				}
 			} // end access function
 
+
 		// Start Attention Function
 		if (ChangeScene.behavior == "Attention") {
+			//mySource = GetComponent<AudioSource>();
+
 			// Start Wall
 
 			if (wallHit == false){
@@ -182,12 +192,14 @@ public class RayCast : MonoBehaviour {
 				case "rightWall":
 					wallHit = true;
 					//SubjectHead.headRed ();
-					escapeAni.SIB();
+					escapeAni.SIB ();
+					mySource.PlayOneShot (whining);
 					break;
 				case "leftWall":
 					wallHit = true;
 					//SubjectHead.headRed ();
-					escapeAni.SIB();
+					escapeAni.SIB ();
+					mySource.PlayOneShot (whining);
 					break;
 				default:
 					break;
