@@ -13,19 +13,65 @@ public class Sensory : MonoBehaviour {
 	public Transform[] moveSpots;
 	private int randomSpot;
 
+	int	currTime;
+	int delayTime;
+	bool targetTimeSet = false;
+	bool SIBTargetTimeSet = false;
+	int endTime;
+	public int startTime;
+	int delay;
+	bool delayReached = true;
+
 	// Use this for initialization
 	void Start () 
 	{
+		endTime = Random.Range (30, 60);
 		anim = GetComponent<Animator> ();
 		waitTime = startWaitTime;
 		randomSpot = Random.Range (0, moveSpots.Length);
 		transform.LookAt(moveSpots[randomSpot].position);
-		StartCoroutine (SIB ());
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		currTime = (int)Time.time;
+		int startTime = 15;
+
+		if (currTime >= startTime && currTime <= endTime) {
+			if (delayReached == true) {
+				Debug.Log("Start SIB");
+				SIB ();
+				delayReached = false;
+				delay = currTime + Random.Range (1, 3);
+				Debug.Log (delay);
+			}
+				
+			if (currTime >= delay) {
+				delayReached = true;
+			}
+		}
+//		if (targetTimeSet == false) {
+//			targetTimeSet = true;
+//			targetTime = (int)Time.time;
+//		}
+
+//		if ((currTime - targetTime) == Random.Range(15, 45)) {
+//			Debug.Log("Starting SIB possibility");
+//			targetTime = (int)Time.time;
+//
+//			if (SIBTargetTimeSet == false) {
+//				SIBTargetTimeSet = true;
+//				SIBTargetTime = (int)Time.time - targetTime;
+//			}
+//
+//			if ((SIBTargetTime - currTime) <= Random.Range (1, 3)) {
+//				Debug.Log("starting SIB");
+//				SIB ();
+//				//SIBTargetTime = (int)Time.time;
+//			}
+
+		//}
 		anim.SetBool ("IsWalking", true);
 		transform.position = Vector3.MoveTowards (transform.position, moveSpots [randomSpot].position, speed = Time.deltaTime);
 
@@ -43,21 +89,17 @@ public class Sensory : MonoBehaviour {
 		}
 	}
 
-	IEnumerator SIB()
+	void SIB()
 	{
-		yield return new WaitForSeconds (Random.Range(3, 15));
-		Debug.Log ("First text prompt should appear now.");
+		//Debug.Log ("First text prompt should appear now.");
+		//Debug.Log (x);
+		//int gametime = Time.time;
 
-		for (int i = 0; i < 15; i++) {
-			yield return new WaitForSeconds (Random.Range(3, 15));
+
+		//if(gametime <= time3) {
 			anim.SetTrigger ("SIB");
-		}
-
-		Debug.Log ("Second text prompt should appear now. SIB will stop in 15 seconds.");
-
-		for (int i = 0; i < 15; i++) {
-			yield return new WaitForSeconds (Random.Range(3, 15));
-			anim.SetTrigger ("SIB");
-		}
+			//Debug.Log (x);
+			//i
+		//}
 	}
 }
