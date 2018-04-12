@@ -7,37 +7,62 @@ public class ChangeScene : MonoBehaviour {
 
 	public static string behavior;
 
+	public GameObject intro;
+	public GameObject menu;
+
+	bool nextMenuB= false;
+
+
+
 	void Start()
 	{
 		Debug.Log (behavior);
+
+		if(nextMenuB == false){
+			intro.SetActive(true);
+			menu.SetActive(false);
+			
+		}
+
+		
+		
+
+		
 	}
 
-	public void ChangeTheScene(int sceneChange)
+	public void ChangeTheScene(string sceneChange)
 	{
 		SceneManager.LoadScene (sceneChange);
+	}
+
+	public void nextMenu(){
+		intro.SetActive(false);
+		menu.SetActive(true);
+		nextMenuB = true;
+
 	}
 
 	public void Escape()
 	{
 		behavior = "Escape";
-		ChangeTheScene (2);
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Access()
 	{
 		behavior = "Access";
-		ChangeTheScene (2);
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Attention()
 	{
 		behavior = "Attention";
-		ChangeTheScene (2);
+		ChangeTheScene ("Simulation");
 	}
 
 	public void Sensory()
 	{
 		behavior = "Sensory";
-		ChangeTheScene (3);
+		ChangeTheScene ("Sensory Simulation");
 	}
 }

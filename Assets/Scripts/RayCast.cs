@@ -11,6 +11,7 @@ public class RayCast : MonoBehaviour {
 	public HomeworkAni HomeworkAni;
 	public BearAni BearAni;
 	public CandyAni CandyAni;
+	public EscapeKidAni escapeAni;
 	public bool hwMoved = false;
 	public bool hwMovedFirst = false;
 	public bool waitedEnough = false;
@@ -21,6 +22,10 @@ public class RayCast : MonoBehaviour {
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
 	public bool wallHit = false;
+	public AudioSource mySource;
+	public AudioClip whining;
+	public AudioClip groan;
+
 
 
 	int time1 = 0;
@@ -44,15 +49,8 @@ public class RayCast : MonoBehaviour {
 
 			//Debug.Log ("hit " + myHit.collider.tag);
 
-			if (myHit.collider.tag == "Subject") {
-				Debug.Log ("hit " + myHit.collider.tag);
-				//SubjectHead1.headRed ();
-				//Debug.Log ("Time machine hit!");
-				//transform.position = new Vector3 (-1, 4, 34);
-				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
-
-			}
 			if (myHit.collider.tag == "Homework") {
+
 				Debug.Log ("hit " + myHit.collider.tag);
 				if (hwMoved == false) {
 					HomeworkAni.moveHW ();
@@ -64,15 +62,16 @@ public class RayCast : MonoBehaviour {
 					hwMoved = false;
 				}
 					
-				
-				//Debug.Log ("Time machine hit!");
-				//transform.position = new Vector3 (-1, 4, 34);
-				//SceneManager.LoadScene ("timeMachine",  LoadSceneMode.Single);
 
 			}
 			if( (hwMovedFirst == false) && (hwMoved == true) && (ChangeScene.behavior == "Escape") ){
+			//if( (hwMovedFirst == false) && (hwMoved == true)  ){
 
-				SubjectHead.headRed ();
+				//SubjectHead.headRed ();
+				//Debug.Log("calling nonSensory SIB ");
+				escapeAni.SIB();
+				mySource.PlayOneShot (groan);
+
 				hwMovedFirst = true;
 			}
 
@@ -111,11 +110,11 @@ public class RayCast : MonoBehaviour {
 					Debug.Log ("time1 = " + time1);
 				}
 
-
 				if( ((time2-time1) > 9) && (turnedAround == true) ){
 					Debug.Log ("waited 10s: " + (time2-time1));
 					waitedEnough = true;
-					SubjectHead.fixHead ();
+					//SubjectHead.fixHead ();
+					escapeAni.stopSIB();
 
 				}
 				 
@@ -139,7 +138,8 @@ public class RayCast : MonoBehaviour {
 						bearMovedFirst = true;
 
 						if (bearMovedFirst == true) {	// give bear back
-							SubjectHead.fixHead ();
+							//SubjectHead.fixHead ();
+							escapeAni.stopSIB();
 						}
 
 					} else {
@@ -147,7 +147,9 @@ public class RayCast : MonoBehaviour {
 						bearMoved = true;
 
 						if (bearMoved == true && bearMovedFirst == true) {	// take bear
-							SubjectHead.headRed ();
+							//SubjectHead.headRed ();
+							escapeAni.SIB();
+							mySource.PlayOneShot (whining);
 							bearMovedFirst = false;
 						}
 					}
@@ -159,7 +161,8 @@ public class RayCast : MonoBehaviour {
 						candyMovedFirst = true;
 
 						if (candyMovedFirst == true) {	// give candy
-							SubjectHead.fixHead ();
+							//SubjectHead.fixHead ();
+							escapeAni.stopSIB();
 						}
 
 					} else {
@@ -167,7 +170,9 @@ public class RayCast : MonoBehaviour {
 						candyMoved = true;
 
 						if (candyMoved == true && candyMovedFirst == true) {	// take candy
-							SubjectHead.headRed ();
+							//SubjectHead.headRed ();
+							escapeAni.SIB();
+							mySource.PlayOneShot (whining);
 							candyMovedFirst = false;
 						}
 						
@@ -175,19 +180,26 @@ public class RayCast : MonoBehaviour {
 				}
 			} // end access function
 
+
 		// Start Attention Function
 		if (ChangeScene.behavior == "Attention") {
+			//mySource = GetComponent<AudioSource>();
+
 			// Start Wall
 
 			if (wallHit == false){
 				switch(myHit.collider.tag){
 				case "rightWall":
 					wallHit = true;
-					SubjectHead.headRed ();
+					//SubjectHead.headRed ();
+					escapeAni.SIB ();
+					mySource.PlayOneShot (whining);
 					break;
 				case "leftWall":
 					wallHit = true;
-					SubjectHead.headRed ();
+					//SubjectHead.headRed ();
+					escapeAni.SIB ();
+					mySource.PlayOneShot (whining);
 					break;
 				default:
 					break;
@@ -196,7 +208,8 @@ public class RayCast : MonoBehaviour {
 			if (wallHit == true) {
 				switch(myHit.collider.tag){
 				case "Subject":
-					SubjectHead.fixHead ();
+					//SubjectHead.fixHead ();
+					escapeAni.stopSIB();
 					break;
 				default:
 					break;
