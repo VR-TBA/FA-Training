@@ -9,6 +9,8 @@ public class Sensory : MonoBehaviour {
 	Rigidbody kidRigid;
 	private float waitTime;
 	public float startWaitTime;
+	public AudioClip whining;
+	public AudioSource soundSource;
 
 	public Transform[] moveSpots;
 	private int randomSpot;
@@ -42,6 +44,7 @@ public class Sensory : MonoBehaviour {
 			if (delayReached == true) {
 				Debug.Log("Start SIB");
 				SIB ();
+				soundSource.PlayOneShot (whining);
 				delayReached = false;
 				delay = currTime + Random.Range (1, 3);
 				Debug.Log (delay);
