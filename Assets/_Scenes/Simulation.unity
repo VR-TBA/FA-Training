@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -24223,6 +24223,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1982580013}
   m_Mesh: {fileID: 4300080, guid: 7d3aa0c48b856c34ea1f5175661c94e9, type: 3}
+--- !u!1 &1988436628 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1294310732906004, guid: 699101f8c72892e498323e142aebc857,
+    type: 2}
+  m_PrefabInternal: {fileID: 273877456}
+--- !u!114 &1988436629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988436628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca33085a27045451b85797be995db9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRayDist: 15
+  SubjectHead: {fileID: 541651187}
+  HomeworkAni: {fileID: 75530543}
+  BearAni: {fileID: 720468951}
+  CandyAni: {fileID: 1887574447}
+  escapeAni: {fileID: 1043031049}
+  hwMoved: 0
+  hwMovedFirst: 0
+  waitedEnough: 0
+  bearMoved: 0
+  bearMovedFirst: 0
+  candyMovedFirst: 0
+  candyMoved: 0
+  turnedAround: 0
+  startTimeSet: 0
+  wallHit: 0
+  mySource: {fileID: 2013497285}
+  whining: {fileID: 8300000, guid: 3c7212660ccee454cba25375145a3ba1, type: 3}
+  groan: {fileID: 8300000, guid: 5ff2f4c1ed475485198bada56fc37da3, type: 3}
+--- !u!4 &1988436631 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4085580465581514, guid: 699101f8c72892e498323e142aebc857,
+    type: 2}
+  m_PrefabInternal: {fileID: 273877456}
 --- !u!1 &2012666181
 GameObject:
   m_ObjectHideFlags: 0
@@ -24325,8 +24365,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRayDist: 15
+  SubjectHead: {fileID: 541651187}
+  HomeworkAni: {fileID: 75530543}
+  BearAni: {fileID: 720468951}
+  CandyAni: {fileID: 1887574447}
   escapeAni: {fileID: 1043031049}
+  hwMoved: 0
+  hwMovedFirst: 0
   waitedEnough: 0
+  bearMoved: 0
+  bearMovedFirst: 0
+  candyMovedFirst: 0
+  candyMoved: 0
   turnedAround: 0
   startTimeSet: 0
   wallHit: 0
@@ -24424,7 +24474,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014627679
 GameObject:
