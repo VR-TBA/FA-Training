@@ -6,34 +6,23 @@ using UnityEngine;
 public class RayCast : MonoBehaviour {
 
 	public float maxRayDist = 15;
-
-	public SubjectHead SubjectHead;
-	public HomeworkAni HomeworkAni;
-	public BearAni BearAni;
-	public CandyAni CandyAni;
 	public EscapeKidAni escapeAni;
-	public bool hwMoved = false;
-	public bool hwMovedFirst = false;
+
 	public bool waitedEnough = false;
-	public bool bearMoved = false;
-	public bool bearMovedFirst = false;
-	public bool candyMovedFirst = false;
-	public bool candyMoved = false;
 	public bool turnedAround = false;
 	public bool startTimeSet = false;
 	public bool wallHit = false;
+
 	public AudioSource mySource;
 	public AudioClip whining;
 	public AudioClip groan;
-
-
 
 	int time1 = 0;
 	int time2 = 0;
 
 	//public float targetTime = 6.0f;
 
-	 public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+	public static System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 
  	int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
@@ -49,52 +38,6 @@ public class RayCast : MonoBehaviour {
 
 			//Debug.Log ("hit " + myHit.collider.tag);
 
-			if (myHit.collider.tag == "Homework") {
-
-				Debug.Log ("hit " + myHit.collider.tag);
-				if (hwMoved == false) {
-					HomeworkAni.moveHW ();
-					hwMoved = true;
-				} else {
-
-					HomeworkAni.removeHW ();
-					
-					hwMoved = false;
-				}
-					
-
-			}
-			if( (hwMovedFirst == false) && (hwMoved == true) && (ChangeScene.behavior == "Escape") ){
-			//if( (hwMovedFirst == false) && (hwMoved == true)  ){
-
-				//SubjectHead.headRed ();
-				//Debug.Log("calling nonSensory SIB ");
-				escapeAni.SIB();
-				mySource.PlayOneShot (groan);
-
-				hwMovedFirst = true;
-			}
-
-			if (myHit.collider.tag == "Bear") {
-				if (bearMoved == false) {
-					BearAni.moveBear ();
-					bearMoved = true;
-				} else {
-					BearAni.removeBear ();
-					bearMoved = false;
-				}
-
-			}
-			if (myHit.collider.tag == "Candy") {
-				if (candyMoved == false) {
-					CandyAni.moveCandy ();
-					candyMoved = true;
-				} else {
-					CandyAni.removeCandy ();
-					candyMoved = false;
-				}
-
-			}
 			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
 				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 				
@@ -115,71 +58,13 @@ public class RayCast : MonoBehaviour {
 					waitedEnough = true;
 					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
+				}			 
+			}
 
-				}
-				 
-				 
-
-			}else{
+			else{
 				turnedAround = false;
 			}			
 		}
-
-			// Access function
-			if (ChangeScene.behavior == "Access") {
-
-				if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.behavior == "Escape")*/) {
-						hwMovedFirst = true;
-				}
-
-				if (myHit.collider.tag == "Bear") {
-					if (bearMoved == false) {
-						BearAni.moveBear ();
-						bearMovedFirst = true;
-
-						if (bearMovedFirst == true) {	// give bear back
-							//SubjectHead.fixHead ();
-							escapeAni.stopSIB();
-						}
-
-					} else {
-						BearAni.removeBear ();
-						bearMoved = true;
-
-						if (bearMoved == true && bearMovedFirst == true) {	// take bear
-							//SubjectHead.headRed ();
-							escapeAni.SIB();
-							mySource.PlayOneShot (whining);
-							bearMovedFirst = false;
-						}
-					}
-
-				}
-				if (myHit.collider.tag == "Candy") {
-					if (candyMoved == false) {
-						CandyAni.moveCandy ();
-						candyMovedFirst = true;
-
-						if (candyMovedFirst == true) {	// give candy
-							//SubjectHead.fixHead ();
-							escapeAni.stopSIB();
-						}
-
-					} else {
-						CandyAni.removeCandy ();
-						candyMoved = true;
-
-						if (candyMoved == true && candyMovedFirst == true) {	// take candy
-							//SubjectHead.headRed ();
-							escapeAni.SIB();
-							mySource.PlayOneShot (whining);
-							candyMovedFirst = false;
-						}
-						
-					}
-				}
-			} // end access function
-
 
 		// Start Attention Function
 		if (ChangeScene.behavior == "Attention") {
