@@ -18,6 +18,8 @@ public class ChangeScene : MonoBehaviour {
 	{
 		Debug.Log (behavior);
 
+		behavior = "Attention";
+
 		if(nextMenuB == false){
 			intro.SetActive(true);
 			menu.SetActive(false);

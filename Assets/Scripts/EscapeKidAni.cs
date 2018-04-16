@@ -34,6 +34,8 @@ public class EscapeKidAni : MonoBehaviour {
 
 	public void stopSIB(){
 		sibBool = false;
+		//anim.SetTrigger ("Land");
+		//anim.SetBool ("IsWalking", false);
 	}
 	void Update () 
 	{
@@ -42,7 +44,8 @@ public class EscapeKidAni : MonoBehaviour {
 			anim.SetTrigger ("SIB");
 			//anim.SetTrigger ("Land");
 		}else{
-			anim.SetTrigger("Grounded");
+			//anim.SetTrigger("Grounded");
+			anim.SetTrigger("stopJump");
 		}
 		
 	}
