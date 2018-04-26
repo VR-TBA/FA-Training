@@ -6,65 +6,71 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour {
 
 	public static string behavior;
+	public static bool text;
 
-	public GameObject intro;
-	public GameObject menu;
-
-	bool nextMenuB= false;
-
+	public GameObject prevMenu;
+	public GameObject currMenu;
+	public GameObject newMenu;
 
 
-	void Start()
+	public void ChangeTheScene()
 	{
-		Debug.Log (behavior);
+		string sceneChange;
 
-		behavior = "Attention";
+		if (behavior == "Sensory")
+			sceneChange = "Sensory Simulation";
 
-		if(nextMenuB == false){
-			intro.SetActive(true);
-			menu.SetActive(false);
-			
-		}
-
-		
-		
-
-		
-	}
-
-	public void ChangeTheScene(string sceneChange)
-	{
+		else 
+			sceneChange = "Simulation";
+	
 		SceneManager.LoadScene (sceneChange);
 	}
 
 	public void nextMenu(){
-		intro.SetActive(false);
-		menu.SetActive(true);
-		nextMenuB = true;
+		currMenu.SetActive(false);
+		newMenu.SetActive(true);
 
+	}
+
+	public void backMenu()
+	{
+		currMenu.SetActive(false);
+		prevMenu.SetActive(true);
 	}
 
 	public void Escape()
 	{
 		behavior = "Escape";
-		ChangeTheScene ("Simulation");
+		nextMenu ();
 	}
 
 	public void Access()
 	{
 		behavior = "Access";
-		ChangeTheScene ("Simulation");
+		nextMenu ();
 	}
 
 	public void Attention()
 	{
 		behavior = "Attention";
-		ChangeTheScene ("Simulation");
+		nextMenu ();
 	}
 
 	public void Sensory()
 	{
 		behavior = "Sensory";
-		ChangeTheScene ("Sensory Simulation");
+		nextMenu ();
+	}
+
+	public void TextOn()
+	{
+		text = true;
+		ChangeTheScene ();
+	}
+
+	public void TextOff()
+	{
+		text = false;
+		ChangeTheScene ();
 	}
 }

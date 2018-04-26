@@ -29,8 +29,6 @@ public class Touch : MonoBehaviour {
 	private string itemTag;
 	private bool touchedItem = false;
 
-
-
 	int time1 = 0;
 	int time2 = 0;
 

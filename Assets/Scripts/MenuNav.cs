@@ -39,6 +39,22 @@ public class MenuNav : MonoBehaviour {
 
 			newButton.OnSelect (null);
 			Debug.Log(newButton.ToString());
-		}			
+		}
+
+		if(OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickUp))
+		{
+			//If last button in array
+			if (index == 0) {
+				newButton = buttons [buttons.Length - 1];
+				index = buttons.Length - 1;
+			} 
+			else {
+				index--;
+				newButton = buttons [index];
+			}
+
+			newButton.OnSelect (null);
+			Debug.Log(newButton.ToString());
+		}	
 	}
 }
