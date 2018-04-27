@@ -11,6 +11,7 @@ public class Touch : MonoBehaviour {
 	public BearAni BearAni;
 	public CandyAni CandyAni;
 	public EscapeKidAni escapeAni;
+	public TextPrompts textPrompts;
 	public static bool hwMoved = false;
 	public static bool hwMovedFirst = false;
 	public static bool waitedEnough = false;
@@ -24,6 +25,8 @@ public class Touch : MonoBehaviour {
 	public AudioSource mySource;
 	public AudioClip whining;
 	public AudioClip groan;
+
+	public static bool triggered = false;
 
 	private SphereCollider collider;
 	private string itemTag;
@@ -79,6 +82,7 @@ public class Touch : MonoBehaviour {
 				mySource.PlayOneShot (groan);
 
 				hwMovedFirst = true;
+				triggered = true;
 			}
 
 			if (itemTag == "Bear") {
@@ -121,7 +125,7 @@ public class Touch : MonoBehaviour {
 					waitedEnough = true;
 					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
-
+					textPrompts.EndSim ();
 				}
 
 
@@ -141,12 +145,13 @@ public class Touch : MonoBehaviour {
 			if (itemTag == "Bear") {
 				if (bearMoved == false) {
 					BearAni.moveBear ();
-					bearMovedFirst = true;
 
 					if (bearMovedFirst == true) {	// give bear back
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
 					}
+
+					bearMovedFirst = true;
 
 				} else {
 					BearAni.removeBear ();
@@ -157,6 +162,7 @@ public class Touch : MonoBehaviour {
 						escapeAni.SIB();
 						mySource.PlayOneShot (whining);
 						bearMovedFirst = false;
+						triggered = true;
 					}
 				}
 
@@ -164,12 +170,13 @@ public class Touch : MonoBehaviour {
 			if (itemTag == "Candy") {
 				if (candyMoved == false) {
 					CandyAni.moveCandy ();
-					candyMovedFirst = true;
 
 					if (candyMovedFirst == true) {	// give candy
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
 					}
+
+					candyMovedFirst = true;
 
 				} else {
 					CandyAni.removeCandy ();
@@ -180,6 +187,7 @@ public class Touch : MonoBehaviour {
 						escapeAni.SIB();
 						mySource.PlayOneShot (whining);
 						candyMovedFirst = false;
+						triggered = true;
 					}
 
 				}

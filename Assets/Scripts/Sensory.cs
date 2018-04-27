@@ -12,22 +12,25 @@ public class Sensory : MonoBehaviour {
 	public AudioClip whining;
 	public AudioSource soundSource;
 
+	public static bool triggered = false;
+
 	public Transform[] moveSpots;
 	private int randomSpot;
 
-	int	currTime;
-	int delayTime;
-	bool targetTimeSet = false;
-	bool SIBTargetTimeSet = false;
-	int endTime;
-	public int startTime;
-	int delay;
+	float currTime;
+	float delayTime;
+	float endTime;
+	public float startTime;
+	float delay;
 	bool delayReached = true;
+	bool alreadyTriggered = false;
+	public TextPrompts textPrompts;
+	private bool ending = true;
 
 	// Use this for initialization
 	void Start () 
 	{
-		endTime = Random.Range (30, 60);
+		endTime = Random.Range (30f, 60f);
 		anim = GetComponent<Animator> ();
 		waitTime = startWaitTime;
 		randomSpot = Random.Range (0, moveSpots.Length);
@@ -37,16 +40,19 @@ public class Sensory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		currTime = (int)Time.time;
-		int startTime = 15;
+		currTime = Time.time;
 
 		if (currTime >= startTime && currTime <= endTime) {
 			if (delayReached == true) {
-				Debug.Log("Start SIB");
+				Debug.Log ("Start SIB");
+				if (!alreadyTriggered) {
+					triggered = true;
+					alreadyTriggered = true;
+				}
 				SIB ();
 				soundSource.PlayOneShot (whining);
 				delayReached = false;
-				delay = currTime + Random.Range (1, 3);
+				delay = currTime + Random.Range (1f, 5f);
 				Debug.Log (delay);
 			}
 				
@@ -54,27 +60,13 @@ public class Sensory : MonoBehaviour {
 				delayReached = true;
 			}
 		}
-//		if (targetTimeSet == false) {
-//			targetTimeSet = true;
-//			targetTime = (int)Time.time;
-//		}
 
-//		if ((currTime - targetTime) == Random.Range(15, 45)) {
-//			Debug.Log("Starting SIB possibility");
-//			targetTime = (int)Time.time;
-//
-//			if (SIBTargetTimeSet == false) {
-//				SIBTargetTimeSet = true;
-//				SIBTargetTime = (int)Time.time - targetTime;
-//			}
-//
-//			if ((SIBTargetTime - currTime) <= Random.Range (1, 3)) {
-//				Debug.Log("starting SIB");
-//				SIB ();
-//				//SIBTargetTime = (int)Time.time;
-//			}
+		else if (currTime >= endTime && ending) 
+		{
+			ending = false;
+			textPrompts.EndSim ();
+		}
 
-		//}
 		anim.SetBool ("IsWalking", true);
 		transform.position = Vector3.MoveTowards (transform.position, moveSpots [randomSpot].position, speed = Time.deltaTime);
 
@@ -94,15 +86,6 @@ public class Sensory : MonoBehaviour {
 
 	void SIB()
 	{
-		//Debug.Log ("First text prompt should appear now.");
-		//Debug.Log (x);
-		//int gametime = Time.time;
-
-
-		//if(gametime <= time3) {
-			anim.SetTrigger ("SIB");
-			//Debug.Log (x);
-			//i
-		//}
+		anim.SetTrigger ("SIB");
 	}
 }

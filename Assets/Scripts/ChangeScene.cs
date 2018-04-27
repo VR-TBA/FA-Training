@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour {
 
 	public static string behavior;
-	public static bool text;
+	public static bool text = false;
 
 	public GameObject prevMenu;
 	public GameObject currMenu;

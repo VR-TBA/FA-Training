@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RayCast : MonoBehaviour {
 
@@ -16,6 +17,10 @@ public class RayCast : MonoBehaviour {
 	public AudioSource mySource;
 	public AudioClip whining;
 	public AudioClip groan;
+
+	public Text timer;
+	public TextPrompts textPrompts;
+	public static bool triggered = false;
 
 	int time1 = 0;
 	int time2 = 0;
@@ -38,7 +43,7 @@ public class RayCast : MonoBehaviour {
 
 			//Debug.Log ("hit " + myHit.collider.tag);
 
-			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") ) {
+			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") && ChangeScene.behavior == "Escape") {
 				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 				
 				
@@ -50,15 +55,18 @@ public class RayCast : MonoBehaviour {
 					turnedAround = true;
 					startTimeSet = true;
 					time1 = time2;
-					Debug.Log ("time1 = " + time1);
+					timer.text = "Timer: " + ((int)time1 - cur_time);
 				}
 
-				if( ((time2-time1) > 9) && (turnedAround == true) ){
+				if( ((time2-time1) > 29) && (turnedAround == true) ){
 					Debug.Log ("waited 10s: " + (time2-time1));
 					waitedEnough = true;
 					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
-				}			 
+					textPrompts.EndSim ();
+				}
+
+				timer.text = "Timer: " + (cur_time - (int)time1);
 			}
 
 			else{
@@ -79,12 +87,14 @@ public class RayCast : MonoBehaviour {
 					//SubjectHead.headRed ();
 					escapeAni.SIB ();
 					mySource.PlayOneShot (whining);
+					triggered = true;
 					break;
 				case "leftWall":
 					wallHit = true;
 					//SubjectHead.headRed ();
 					escapeAni.SIB ();
 					mySource.PlayOneShot (whining);
+					triggered = true;
 					break;
 				default:
 					break;
@@ -95,6 +105,7 @@ public class RayCast : MonoBehaviour {
 				case "Subject":
 					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
+					textPrompts.EndSim ();
 					break;
 				default:
 					break;
