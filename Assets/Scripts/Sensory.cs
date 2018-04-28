@@ -30,7 +30,7 @@ public class Sensory : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		endTime = Random.Range (30f, 60f);
+		endTime = Random.Range (60f, 120f);
 		anim = GetComponent<Animator> ();
 		waitTime = startWaitTime;
 		randomSpot = Random.Range (0, moveSpots.Length);
@@ -40,7 +40,7 @@ public class Sensory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		currTime = Time.time;
+		currTime = Time.timeSinceLevelLoad;
 
 		if (currTime >= startTime && currTime <= endTime) {
 			if (delayReached == true) {

@@ -73,4 +73,9 @@ public class ChangeScene : MonoBehaviour {
 		text = false;
 		ChangeTheScene ();
 	}
+
+	public void Quit()
+	{
+		Application.Quit ();
+	}
 }
