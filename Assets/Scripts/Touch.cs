@@ -11,6 +11,7 @@ public class Touch : MonoBehaviour {
 	public BearAni BearAni;
 	public CandyAni CandyAni;
 	public EscapeKidAni escapeAni;
+	public TextPrompts textPrompts;
 	public static bool hwMoved = false;
 	public static bool hwMovedFirst = false;
 	public static bool waitedEnough = false;
@@ -25,9 +26,13 @@ public class Touch : MonoBehaviour {
 	public AudioClip whining;
 	public AudioClip groan;
 
+	public static bool triggered = false;
+
 	private SphereCollider collider;
 	private string itemTag;
 	private bool touchedItem = false;
+
+	bool accessSIBstarted = false;
 
 	int time1 = 0;
 	int time2 = 0;
@@ -79,6 +84,7 @@ public class Touch : MonoBehaviour {
 				mySource.PlayOneShot (groan);
 
 				hwMovedFirst = true;
+				triggered = true;
 			}
 
 			if (itemTag == "Bear") {
@@ -121,7 +127,7 @@ public class Touch : MonoBehaviour {
 					waitedEnough = true;
 					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
-
+					textPrompts.EndSim ();
 				}
 
 
@@ -141,12 +147,15 @@ public class Touch : MonoBehaviour {
 			if (itemTag == "Bear") {
 				if (bearMoved == false) {
 					BearAni.moveBear ();
-					bearMovedFirst = true;
 
-					if (bearMovedFirst == true) {	// give bear back
+					if ( (bearMovedFirst == true) && (accessSIBstarted == true) ) {	// give bear back
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
+						accessSIBstarted = false;
+						textPrompts.EndSim ();
 					}
+
+					bearMovedFirst = true;
 
 				} else {
 					BearAni.removeBear ();
@@ -155,8 +164,10 @@ public class Touch : MonoBehaviour {
 					if (bearMoved == true && bearMovedFirst == true) {	// take bear
 						//SubjectHead.headRed ();
 						escapeAni.SIB();
+						accessSIBstarted = true;
 						mySource.PlayOneShot (whining);
 						bearMovedFirst = false;
+						triggered = true;
 					}
 				}
 
@@ -164,12 +175,15 @@ public class Touch : MonoBehaviour {
 			if (itemTag == "Candy") {
 				if (candyMoved == false) {
 					CandyAni.moveCandy ();
-					candyMovedFirst = true;
 
-					if (candyMovedFirst == true) {	// give candy
+					if ( (candyMovedFirst == true) && (accessSIBstarted == true) ) {	// give candy
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
+						accessSIBstarted = false;
+						textPrompts.EndSim ();
 					}
+
+					candyMovedFirst = true;
 
 				} else {
 					CandyAni.removeCandy ();
@@ -178,8 +192,10 @@ public class Touch : MonoBehaviour {
 					if (candyMoved == true && candyMovedFirst == true) {	// take candy
 						//SubjectHead.headRed ();
 						escapeAni.SIB();
+						accessSIBstarted = true;
 						mySource.PlayOneShot (whining);
 						candyMovedFirst = false;
+						triggered = true;
 					}
 
 				}
@@ -189,4 +205,3 @@ public class Touch : MonoBehaviour {
 		touchedItem = false;
 	}
 }
-
