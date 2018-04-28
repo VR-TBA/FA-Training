@@ -32,6 +32,8 @@ public class Touch : MonoBehaviour {
 	private string itemTag;
 	private bool touchedItem = false;
 
+	bool accessSIBstarted = false;
+
 	int time1 = 0;
 	int time2 = 0;
 
@@ -146,9 +148,11 @@ public class Touch : MonoBehaviour {
 				if (bearMoved == false) {
 					BearAni.moveBear ();
 
-					if (bearMovedFirst == true) {	// give bear back
+					if ( (bearMovedFirst == true) && (accessSIBstarted == true) ) {	// give bear back
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
+						accessSIBstarted = false;
+						textPrompts.EndSim ();
 					}
 
 					bearMovedFirst = true;
@@ -160,6 +164,7 @@ public class Touch : MonoBehaviour {
 					if (bearMoved == true && bearMovedFirst == true) {	// take bear
 						//SubjectHead.headRed ();
 						escapeAni.SIB();
+						accessSIBstarted = true;
 						mySource.PlayOneShot (whining);
 						bearMovedFirst = false;
 						triggered = true;
@@ -171,9 +176,11 @@ public class Touch : MonoBehaviour {
 				if (candyMoved == false) {
 					CandyAni.moveCandy ();
 
-					if (candyMovedFirst == true) {	// give candy
+					if ( (candyMovedFirst == true) && (accessSIBstarted == true) ) {	// give candy
 						//SubjectHead.fixHead ();
 						escapeAni.stopSIB();
+						accessSIBstarted = false;
+						textPrompts.EndSim ();
 					}
 
 					candyMovedFirst = true;
@@ -185,6 +192,7 @@ public class Touch : MonoBehaviour {
 					if (candyMoved == true && candyMovedFirst == true) {	// take candy
 						//SubjectHead.headRed ();
 						escapeAni.SIB();
+						accessSIBstarted = true;
 						mySource.PlayOneShot (whining);
 						candyMovedFirst = false;
 						triggered = true;
@@ -197,4 +205,3 @@ public class Touch : MonoBehaviour {
 		touchedItem = false;
 	}
 }
-

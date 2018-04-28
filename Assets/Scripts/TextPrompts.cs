@@ -8,8 +8,10 @@ public class TextPrompts : MonoBehaviour {
 
 	public GameObject textCanvas;
 	public GameObject helpCanvas;
+	public GameObject finishCanvas;
 	public Text question;
 	public Text function;
+	public Text finish;
 	public Button AccessButton;
 	public Button SensoryButton;
 	public Button EscapeButton;
@@ -37,7 +39,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (4);
 
-		function.text = "Returning to main menu...";
+		finish.text = "Taking you back to the main menu...";
 
 		yield return new WaitForSeconds (4);
 
@@ -46,7 +48,8 @@ public class TextPrompts : MonoBehaviour {
 
 	public void EndSim()
 	{
-		function.text = "Great work! See if you can do it again without text prompts!";
+		helpCanvas.SetActive (false);
+		finishCanvas.SetActive (true);
 		StartCoroutine (ReturnToMenu());
 	}
 

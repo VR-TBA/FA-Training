@@ -30,7 +30,7 @@ public class Sensory : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		endTime = Random.Range (60f, 120f);
+		endTime = Random.Range (30f, 60f);
 		anim = GetComponent<Animator> ();
 		waitTime = startWaitTime;
 		randomSpot = Random.Range (0, moveSpots.Length);
