@@ -14866,6 +14866,11 @@ Prefab:
       propertyPath: textPrompts
       value: 
       objectReference: {fileID: 1059035011}
+    - target: {fileID: 114429316323511326, guid: 5bfffb310c7d3e3409c2833c2529fce8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bfffb310c7d3e3409c2833c2529fce8, type: 2}
   m_IsPrefabParent: 0
