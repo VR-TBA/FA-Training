@@ -19,9 +19,11 @@ public class ChangeScene : MonoBehaviour {
 
 		if (behavior == "Sensory")
 			sceneChange = "Sensory Simulation";
-
-		else 
+		else {
 			sceneChange = "Simulation";
+			if (behavior == "Video Modeling")
+				sceneChange = "Video";
+		}
 	
 		SceneManager.LoadScene (sceneChange);
 	}
@@ -74,6 +76,25 @@ public class ChangeScene : MonoBehaviour {
 		ChangeTheScene ();
 	}
 
+	public void AccessVid(){
+		behavior = "AccessVid";
+		ChangeTheScene ();
+	}
+
+	public void EscapeVid(){
+		behavior = "EscapeVid";
+		ChangeTheScene ();
+	}
+
+	public void SensoryVid(){
+		behavior = "SensoryVid";
+		ChangeTheScene ();
+	}
+
+	public void AttentionVid(){
+		behavior = "AttentionVid";
+		ChangeTheScene ();
+	}
 	public void Quit()
 	{
 		Application.Quit ();
