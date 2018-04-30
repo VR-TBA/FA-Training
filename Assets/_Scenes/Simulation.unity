@@ -43262,15 +43262,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1b0b5b1dc3312ad4f9cf4e84a6e6c2bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.248
+      value: -2.295
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1b0b5b1dc3312ad4f9cf4e84a6e6c2bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.027
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1b0b5b1dc3312ad4f9cf4e84a6e6c2bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.521
+      value: 1.325
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1b0b5b1dc3312ad4f9cf4e84a6e6c2bd, type: 3}
       propertyPath: m_LocalRotation.x

@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Sensory Simulation.unity
     guid: 97a10df19714b59478bb4e7f146c9d00
+  - enabled: 1
+    path: Assets/_Scenes/Video.unity
+    guid: 3663d726beee937418ccc8d4d2a31cc7

@@ -11,6 +11,8 @@ public class ChangeScene : MonoBehaviour {
 	public GameObject prevMenu;
 	public GameObject currMenu;
 	public GameObject newMenu;
+	public GameObject videoMenu;
+	public GameObject litMenu;
 
 
 	public void ChangeTheScene()
@@ -19,11 +21,11 @@ public class ChangeScene : MonoBehaviour {
 
 		if (behavior == "Sensory")
 			sceneChange = "Sensory Simulation";
-		else {
+		else if (behavior == "Access" || behavior == "Escape" || behavior == "Attention")
 			sceneChange = "Simulation";
-			if (behavior == "Video Modeling")
-				sceneChange = "Video";
-		}
+		else
+			sceneChange = "Video";
+
 	
 		SceneManager.LoadScene (sceneChange);
 	}
@@ -38,6 +40,18 @@ public class ChangeScene : MonoBehaviour {
 	{
 		currMenu.SetActive(false);
 		prevMenu.SetActive(true);
+	}
+
+	public void vidMenu()
+	{
+		currMenu.SetActive (false);
+		videoMenu.SetActive (true);
+	}
+
+	public void literatureMenu()
+	{
+		currMenu.SetActive (false);
+		litMenu.SetActive (true);
 	}
 
 	public void Escape()

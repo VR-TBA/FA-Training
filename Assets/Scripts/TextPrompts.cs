@@ -57,7 +57,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Access") {
 			AccessButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Access\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Access\" condition.";
 		}
 		else {
 			AccessButton.GetComponent<Image> ().color = Color.green;
@@ -69,7 +69,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Sensory") {
 			SensoryButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Sensory\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Sensory\" condition.";
 		}
 		else {
 			SensoryButton.GetComponent<Image> ().color = Color.green;
@@ -81,7 +81,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Escape") {
 			EscapeButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Escape\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Escape\" condition.";
 		}
 		else {
 			EscapeButton.GetComponent<Image> ().color = Color.green;
@@ -93,7 +93,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Attention") {
 			AttentionButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Attention\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Attention\" condition.";
 		}
 		else {
 			AttentionButton.GetComponent<Image> ().color = Color.green;
@@ -103,7 +103,7 @@ public class TextPrompts : MonoBehaviour {
 
 	IEnumerator correctAnswer()
 	{
-		question.text = "Correct! Please, demonstrate this technique...";
+		question.text = "Correct! Please demonstrate this technique...";
 		Time.timeScale = 1f;
 		yield return new WaitForSeconds (4);
 		textCanvas.SetActive (false);

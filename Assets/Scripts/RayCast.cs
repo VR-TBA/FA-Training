@@ -38,6 +38,9 @@ public class RayCast : MonoBehaviour {
 
 		Debug.DrawRay(transform.position, transform.forward*maxRayDist);
 
+		if (Input.GetKeyDown (KeyCode.Escape))
+			SceneManager.LoadScene ("Menu");
+
 
 		if (Physics.Raycast(myRay, out myHit, maxRayDist) ){
 
@@ -54,7 +57,7 @@ public class RayCast : MonoBehaviour {
 					turnedAround = true;
 					startTimeSet = true;
 					time1 = time2;
-					timer.text = "Timer: " + ((int)time1 - cur_time);
+					//timer.text = "Timer: " + ((int)time1 - cur_time);
 				}
 
 				if( ((time2-time1) > 29) && (turnedAround == true) ){
@@ -64,11 +67,13 @@ public class RayCast : MonoBehaviour {
 					textPrompts.EndSim ();
 				}
 
-				timer.text = "Timer: " + (cur_time - (int)time1);
+				timer.text = "Timer: " + (time2-time1);
 			}
-
 			else{
 				turnedAround = false;
+				startTimeSet = false;
+				time1 = 0;
+				time2 = 0;
 			}			
 		}
 

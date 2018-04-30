@@ -12,16 +12,16 @@ public class Touch : MonoBehaviour {
 	public CandyAni CandyAni;
 	public EscapeKidAni escapeAni;
 	public TextPrompts textPrompts;
-	public static bool hwMoved = false;
-	public static bool hwMovedFirst = false;
-	public static bool waitedEnough = false;
-	public static bool bearMoved = false;
-	public static bool bearMovedFirst = false;
-	public static bool candyMovedFirst = false;
-	public static bool candyMoved = false;
-	public static bool turnedAround = false;
-	public static bool startTimeSet = false;
-	public static bool wallHit = false;
+	private bool hwMoved = false;
+	private bool hwMovedFirst = false;
+	private bool waitedEnough = false;
+	private bool bearMoved = false;
+	private bool bearMovedFirst = false;
+	private bool candyMovedFirst = false;
+	private bool candyMoved = false;
+	private bool turnedAround = false;
+	private bool startTimeSet = false;
+	private bool wallHit = false;
 	public AudioSource mySource;
 	public AudioClip whining;
 	public AudioClip groan;
@@ -32,7 +32,8 @@ public class Touch : MonoBehaviour {
 	private string itemTag;
 	private bool touchedItem = false;
 
-	bool accessSIBstarted = false;
+	bool accessBearSIBstarted = false;
+	bool accessCandySIBstarted = false;
 
 	int time1 = 0;
 	int time2 = 0;
@@ -46,6 +47,7 @@ public class Touch : MonoBehaviour {
 	void Start()
 	{
 		collider = GetComponent<SphereCollider> ();
+		triggered = false;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -55,150 +57,232 @@ public class Touch : MonoBehaviour {
 	}
 
 	public void FixedUpdate(){
+		if (ChangeScene.behavior == "Escape") {
+			
 
-		if (touchedItem){
+			if (touchedItem) {
 
-			//Debug.Log ("hit " + itemTag);
+				//Debug.Log ("hit " + itemTag);
+
+				if (itemTag == "Homework") {
+
+					Debug.Log ("hit " + itemTag);
+					if (hwMoved == false) {
+						HomeworkAni.moveHW ();
+						hwMoved = true;
+					} else {
+
+						HomeworkAni.removeHW ();
+
+						hwMoved = false;
+					}
+
+
+				}
+				if ((hwMovedFirst == false) && (hwMoved == true)) {
+					//if( (hwMovedFirst == false) && (hwMoved == true)  ){
+
+					//SubjectHead.headRed ();
+					//Debug.Log("calling nonSensory SIB ");
+					escapeAni.SIB ();
+					mySource.PlayOneShot (groan);
+
+					hwMovedFirst = true;
+					triggered = true;
+				}
+
+				if (itemTag == "Bear") {
+					if (bearMoved == false) {
+						BearAni.moveBear ();
+						bearMoved = true;
+					} else {
+						BearAni.removeBear ();
+						bearMoved = false;
+					}
+
+				}
+				if (itemTag == "Candy") {
+					if (candyMoved == false) {
+						CandyAni.moveCandy ();
+						candyMoved = true;
+					} else {
+						CandyAni.removeCandy ();
+						candyMoved = false;
+					}
+
+				}
+			}
+		}
+		if (ChangeScene.behavior == "Attention") {
+
+
+			if (touchedItem) {
+
+				//Debug.Log ("hit " + itemTag);
+
+				if (itemTag == "Homework") {
+
+					Debug.Log ("hit " + itemTag);
+					if (hwMoved == false) {
+						HomeworkAni.moveHW ();
+						hwMoved = true;
+					} else {
+
+						HomeworkAni.removeHW ();
+						hwMoved = false;
+					}
+
+
+				}
+
+				if (itemTag == "Bear") {
+					if (bearMoved == false) {
+						BearAni.moveBear ();
+						bearMoved = true;
+					} else {
+						BearAni.removeBear ();
+						bearMoved = false;
+					}
+
+				}
+				if (itemTag == "Candy") {
+					if (candyMoved == false) {
+						CandyAni.moveCandy ();
+						candyMoved = true;
+					} else {
+						CandyAni.removeCandy ();
+						candyMoved = false;
+					}
+
+				}
+			}
+		}
+
+		// Access function
+		if (ChangeScene.behavior == "Access") {
+
+		  if (touchedItem) {
 
 			if (itemTag == "Homework") {
 
-				Debug.Log ("hit " + itemTag);
 				if (hwMoved == false) {
 					HomeworkAni.moveHW ();
 					hwMoved = true;
 				} else {
 
 					HomeworkAni.removeHW ();
-
 					hwMoved = false;
 				}
-
-
-			}
-			if( (hwMovedFirst == false) && (hwMoved == true) && (ChangeScene.behavior == "Escape") ){
-				//if( (hwMovedFirst == false) && (hwMoved == true)  ){
-
-				//SubjectHead.headRed ();
-				//Debug.Log("calling nonSensory SIB ");
-				escapeAni.SIB();
-				mySource.PlayOneShot (groan);
-
-				hwMovedFirst = true;
-				triggered = true;
 			}
 
 			if (itemTag == "Bear") {
 				if (bearMoved == false) {
 					BearAni.moveBear ();
 					bearMoved = true;
+
 				} else {
 					BearAni.removeBear ();
 					bearMoved = false;
-				}
-
-			}
-			if (itemTag == "Candy") {
-				if (candyMoved == false) {
-					CandyAni.moveCandy ();
-					candyMoved = true;
-				} else {
-					CandyAni.removeCandy ();
-					candyMoved = false;
-				}
-
-			}
-			if ( (itemTag == "rightWall") || (itemTag == "leftWall") ) {
-				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-
-
-
-				time2 = cur_time; //set time to current time when entering turn-around;
-				//Debug.Log ("time2 = " + time2);
-
-				if(startTimeSet == false){
-					turnedAround = true;
-					startTimeSet = true;
-					time1 = time2;
-					Debug.Log ("time1 = " + time1);
-				}
-
-				if( ((time2-time1) > 9) && (turnedAround == true) ){
-					Debug.Log ("waited 10s: " + (time2-time1));
-					waitedEnough = true;
-					//SubjectHead.fixHead ();
-					escapeAni.stopSIB();
-					textPrompts.EndSim ();
-				}
-
-
-
-			}else{
-				turnedAround = false;
-			}			
-		}
-
-		// Access function
-		if (ChangeScene.behavior == "Access") {
-
-			if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.behavior == "Escape")*/) {
-				hwMovedFirst = true;
-			}
-
-			if (itemTag == "Bear") {
-				if (bearMoved == false) {
-					BearAni.moveBear ();
-
-					if ( (bearMovedFirst == true) && (accessSIBstarted == true) ) {	// give bear back
-						//SubjectHead.fixHead ();
-						escapeAni.stopSIB();
-						accessSIBstarted = false;
-						textPrompts.EndSim ();
-					}
-
 					bearMovedFirst = true;
-
-				} else {
-					BearAni.removeBear ();
-					bearMoved = true;
-
-					if (bearMoved == true && bearMovedFirst == true) {	// take bear
-						//SubjectHead.headRed ();
-						escapeAni.SIB();
-						accessSIBstarted = true;
-						mySource.PlayOneShot (whining);
-						bearMovedFirst = false;
-						triggered = true;
-					}
 				}
-
 			}
+
+			if( (bearMovedFirst == true) && (bearMoved == false)){
+				escapeAni.SIB();
+				mySource.PlayOneShot (whining);
+					accessBearSIBstarted = true;
+				bearMovedFirst = true;
+				triggered = true;
+			}
+				if ( (bearMoved == true) && (accessBearSIBstarted == true) ) {	// give bear back
+				escapeAni.stopSIB();
+					accessBearSIBstarted = false;
+				textPrompts.EndSim ();
+			}
+
 			if (itemTag == "Candy") {
-				if (candyMoved == false) {
-					CandyAni.moveCandy ();
-
-					if ( (candyMovedFirst == true) && (accessSIBstarted == true) ) {	// give candy
-						//SubjectHead.fixHead ();
-						escapeAni.stopSIB();
-						accessSIBstarted = false;
-						textPrompts.EndSim ();
-					}
-
-					candyMovedFirst = true;
+					if (candyMoved == false) {
+						CandyAni.moveCandy ();
+						candyMoved = true;
 
 				} else {
-					CandyAni.removeCandy ();
-					candyMoved = true;
-
-					if (candyMoved == true && candyMovedFirst == true) {	// take candy
-						//SubjectHead.headRed ();
-						escapeAni.SIB();
-						accessSIBstarted = true;
-						mySource.PlayOneShot (whining);
-						candyMovedFirst = false;
-						triggered = true;
-					}
-
+						CandyAni.removeCandy ();
+						candyMoved = false;
+						candyMovedFirst = true;
 				}
+			}
+
+				if( (candyMovedFirst == true) && (candyMoved == false)){
+				escapeAni.SIB();
+				mySource.PlayOneShot (whining);
+					accessCandySIBstarted = true;
+					candyMovedFirst = true;
+				triggered = true;
+			}
+				if ( (candyMoved == true) && (accessCandySIBstarted == true) ) {	// give bear back
+				escapeAni.stopSIB();
+					accessCandySIBstarted = false;
+				textPrompts.EndSim ();
+			}
+
+//			if ((hwMovedFirst == true) && (hwMoved == true) /*&& (ChangeScene.behavior == "Escape")*/) {
+//				hwMovedFirst = true;
+//			}
+
+//			if (itemTag == "Bear") {
+//				if (bearMoved == false) {
+//					BearAni.moveBear ();
+//
+//					if ( (bearMovedFirst == true) && (accessSIBstarted == true) ) {	// give bear back
+//						escapeAni.stopSIB();
+//						accessSIBstarted = false;
+//						textPrompts.EndSim ();
+//					}
+//
+//					bearMovedFirst = true;
+//
+//				} else {
+//					BearAni.removeBear ();
+//					bearMoved = true;
+//
+//					if (bearMoved == true && bearMovedFirst == true) {	// take bear
+//						escapeAni.SIB();
+//						accessSIBstarted = true;
+//						mySource.PlayOneShot (whining);
+//						bearMovedFirst = false;
+//						triggered = true;
+//					}
+//				}
+//
+//			}
+//			if (itemTag == "Candy") {
+//				if (candyMoved == false) {
+//					CandyAni.moveCandy ();
+//
+//					if ( (candyMovedFirst == true) && (accessSIBstarted == true) ) {	// give candy
+//						//SubjectHead.fixHead ();
+//						escapeAni.stopSIB();
+//						accessSIBstarted = false;
+//						textPrompts.EndSim ();
+//					}
+//
+//					candyMovedFirst = true;
+//
+//				} else {
+//					CandyAni.removeCandy ();
+//					candyMoved = true;
+//
+//					if (candyMoved == true && candyMovedFirst == true) {	// take candy
+//						//SubjectHead.headRed ();
+//						escapeAni.SIB();
+//						accessSIBstarted = true;
+//						mySource.PlayOneShot (whining);
+//						candyMovedFirst = false;
+//						triggered = true;
+//					}
+//
+//				}
+//			}
 			}
 		} // end access function
 
