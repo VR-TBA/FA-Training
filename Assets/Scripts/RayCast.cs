@@ -38,39 +38,42 @@ public class RayCast : MonoBehaviour {
 
 		Debug.DrawRay(transform.position, transform.forward*maxRayDist);
 
+		if (Input.GetKeyDown (KeyCode.Escape))
+			SceneManager.LoadScene ("Menu");
+
 
 		if (Physics.Raycast(myRay, out myHit, maxRayDist) ){
 
 			//Debug.Log ("hit " + myHit.collider.tag);
 
-			if ( (myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall") && ChangeScene.behavior == "Escape") {
+			if ( ((myHit.collider.tag == "rightWall") || (myHit.collider.tag == "leftWall")) && ChangeScene.behavior == "Escape") {
 				cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 				
 				
 
 				time2 = cur_time; //set time to current time when entering turn-around;
-				//Debug.Log ("time2 = " + time2);
 
 				if(startTimeSet == false){
 					turnedAround = true;
 					startTimeSet = true;
 					time1 = time2;
-					timer.text = "Timer: " + ((int)time1 - cur_time);
+					//timer.text = "Timer: " + ((int)time1 - cur_time);
 				}
 
 				if( ((time2-time1) > 29) && (turnedAround == true) ){
 					Debug.Log ("waited 10s: " + (time2-time1));
 					waitedEnough = true;
-					//SubjectHead.fixHead ();
 					escapeAni.stopSIB();
 					textPrompts.EndSim ();
 				}
 
-				timer.text = "Timer: " + (cur_time - (int)time1);
+				timer.text = "Timer: " + (time2-time1);
 			}
-
 			else{
 				turnedAround = false;
+				startTimeSet = false;
+				time1 = 0;
+				time2 = 0;
 			}			
 		}
 

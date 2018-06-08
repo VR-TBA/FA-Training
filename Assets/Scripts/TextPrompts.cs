@@ -8,8 +8,10 @@ public class TextPrompts : MonoBehaviour {
 
 	public GameObject textCanvas;
 	public GameObject helpCanvas;
+	public GameObject finishCanvas;
 	public Text question;
 	public Text function;
+	public Text finish;
 	public Button AccessButton;
 	public Button SensoryButton;
 	public Button EscapeButton;
@@ -37,7 +39,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (4);
 
-		function.text = "Returning to main menu...";
+		finish.text = "Taking you back to the main menu...";
 
 		yield return new WaitForSeconds (4);
 
@@ -46,7 +48,8 @@ public class TextPrompts : MonoBehaviour {
 
 	public void EndSim()
 	{
-		function.text = "Great work! See if you can do it again without text prompts!";
+		helpCanvas.SetActive (false);
+		finishCanvas.SetActive (true);
 		StartCoroutine (ReturnToMenu());
 	}
 
@@ -54,7 +57,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Access") {
 			AccessButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Access\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Access\" condition.";
 		}
 		else {
 			AccessButton.GetComponent<Image> ().color = Color.green;
@@ -66,7 +69,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Sensory") {
 			SensoryButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Sensory\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Sensory\" condition.";
 		}
 		else {
 			SensoryButton.GetComponent<Image> ().color = Color.green;
@@ -78,7 +81,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Escape") {
 			EscapeButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Escape\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Escape\" condition.";
 		}
 		else {
 			EscapeButton.GetComponent<Image> ().color = Color.green;
@@ -90,7 +93,7 @@ public class TextPrompts : MonoBehaviour {
 	{
 		if (behavior != "Attention") {
 			AttentionButton.GetComponent<Image> ().color = Color.red;
-			question.text = "Incorrect. This is how you probe for the \"Attention\" condition";
+			question.text = "Incorrect. This is how you probe for the \"Attention\" condition.";
 		}
 		else {
 			AttentionButton.GetComponent<Image> ().color = Color.green;
@@ -100,7 +103,7 @@ public class TextPrompts : MonoBehaviour {
 
 	IEnumerator correctAnswer()
 	{
-		question.text = "Correct! Please, demonstrate this technique...";
+		question.text = "Correct! Please demonstrate this technique...";
 		Time.timeScale = 1f;
 		yield return new WaitForSeconds (4);
 		textCanvas.SetActive (false);

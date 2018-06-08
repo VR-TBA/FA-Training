@@ -40,7 +40,7 @@ public class Sensory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		currTime = Time.time;
+		currTime = Time.timeSinceLevelLoad;
 
 		if (currTime >= startTime && currTime <= endTime) {
 			if (delayReached == true) {
