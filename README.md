@@ -32,10 +32,6 @@ Use the control stick on your left Oculus controller to navigate the menus, and 
 * **Kelsey Terrel** - [kterrel](https://github.com/kterrel)
 * **Nick Wilbur** - *Scrum Master* - [nwilbur95](https://github.com/nwilbur95)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 * Special thanks to [BehaviorMe, Inc.](https://www.behaviorme.co/) for allowing us to be a part of this project.
